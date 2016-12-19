@@ -1,0 +1,126 @@
+<div layout="row" layout-wrap>
+
+    <div class="timeline" layout="column" flex="100" flex-gt-sm="55" flex-gt-md="65" flex-order="2" flex-order-gt-sm="1">
+
+
+                    <div class="product-detail-form-container md-background-bg md-whiteframe-1dp">
+                        <form name="listForm">
+                            <div layout-gt-sm="row"   layout-align="start center">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.CONTACT_FIRST_NAME">Nombre</label>
+                                    <input type="text" ng-model="vm.user.name">
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.CONTACT_LAST_NAME">Apellido(s)</label>
+                                    <input type="text" ng-model="vm.user.lastName" >
+                                </md-input-container>
+                            </div>
+
+                            <div layout-gt-sm="row"  layout-align="start center">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.CONTACT_EMAIL">Correo</label>
+                                    <input type="text" ng-model="vm.user.email" >
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.CONTACT_PHONE">Teléfono</label>
+                                    <input  type="text" ng-model="vm.user.phone"
+                                            name="phone">                                          
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.CONTACT_MOBILE">Celular</label>
+                                    <input type="text" ng-model="vm.user.mobile">
+                                </md-input-container>
+                            </div>
+
+                            <div layout-gt-sm="row"  layout-align="start center">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.CONTACT_EMAIL">Correo</label>
+                                    <input type="text" ng-model="vm.user.email" >
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.CONTACT_PHONE">Teléfono</label>
+                                    <input  type="text" ng-model="vm.user.phone"
+                                            name="phone">                                          
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.CONTACT_COMPANY">Empresa</label>
+                                    <input type="text" ng-model="vm.user.company">
+                                </md-input-container>
+                            </div>
+
+                            <md-input-container class="md-block md-icon-float">
+                              <md-checkbox ng-model="vm.user.otherContact" 
+                                           aria-label="Checkbox 1">
+                                <span translate="EC.OTHER_CONTACT">Use other contact information?</span>
+                              </md-checkbox>                              
+                            </md-input-container>
+
+                            <div layout-gt-sm="row" layout-align="start center">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.OTHER_NAME">Name</label>
+                                    <input type="text" ng-model="vm.user.otherName"
+                                           name="otherName"
+                                           ng-required='vm.user.otherContact'>
+                                      <div ng-messages="listForm.otherName.$error">
+                                        <div ng-message="required">El nombre es requerido.</div>
+                                      </div>                                           
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.OTHER_EMAIL">Email</label>
+                                    <input type="email" name="otherEmail"
+                                           ng-model="vm.user.otherEmail">
+                                          <div ng-messages="listForm.otherEmail.$error">
+                                                <div ng-message="email">Digite una dirección de correo válida.</div>
+                                          </div>                                    
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.OTHER_PHONE">Phone</label>
+                                    <input type="text" ng-model="vm.user.otherPhone"
+                                            name="otherPhone">
+                                </md-input-container>
+                            </div>
+                            <div layout="row"  layout-align="center center">
+                                <md-button class="md-primary">Guardar</md-button>
+                            </div>
+
+                        </form>
+                    </div>
+
+
+
+    </div>
+
+    <div class="timeline-sidebar" layout="column" flex="100" flex-gt-sm="45" flex-gt-md="35" flex-order="1" flex-order-gt-sm="2">
+
+        <div class="profile-box latest-activity md-whiteframe-1dp" layout="column">
+            <header class="md-accent-bg" layout="row" layout-align="space-between center">
+                <div class="title" translate="PROFILE.LATEST_ACTIVITY">Latest Activity</div>
+                <div class="more secondary-text" translate="PROFILE.SEE_ALL">See All</div>
+            </header>
+
+            <div class="content" layout="row" layout-wrap>
+                <div class="activities">
+                    <div class="activity" layout="row" layout-align="start start" ng-repeat="activity in vm.activities">
+                        <img ng-src="{{activity.user.avatar}}" class="avatar" alt="{{activity.user.name}}"/>
+
+                        <div layout="column">
+                            <div>
+                                <span class="username md-accent-color">{{activity.user.name}}</span>
+                                <span class="message"> {{activity.message}}</span>
+                            </div>
+                            <span class="time secondary-text">{{activity.time}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

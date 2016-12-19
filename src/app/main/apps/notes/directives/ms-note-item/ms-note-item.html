@@ -1,0 +1,98 @@
+<md-card ng-class="MsNoteItem.note.color">
+
+
+    <!-- NOTE IMAGE -->
+        <img  class="md-card-image" ng-if="MsNoteItem.note.image" ng-src="{{MsNoteItem.note.image}}">
+
+        <md-button class="md-fab md-mini delete-image-button" ng-click="MsNoteForm.deleteImage()"
+                   aria-label="delete image" translate translate-attr-aria-label="NOTES.DELETE_IMAGE">
+            <md-icon md-font-icon="icon-pin"></md-icon>
+        </md-button>
+    <!-- / NOTE IMAGE -->
+
+    <md-card-content>
+
+        <!-- NOTE LABELS -->
+        <div class="labels" layout="row" layout-wrap layout-align="start center">
+            <div class="label"  ng-class="md-red-300-bg">
+                Casa a la venta
+            </div>
+        </div>
+        <!-- / NOTE LABELS -->
+
+        <!-- NOTE TITLE -->
+        <md-card-title ng-if="MsNoteItem.note.price">
+            <md-card-title-text>
+                
+                            <div class="h2 secondary-text">{{MsNoteItem.note.price }}</div>                
+            </md-card-title-text>
+        </md-card-title>
+        <!-- / NOTE TITLE -->
+
+        <!-- NOTE DESCRIPTION -->
+        <md-description ng-if="MsNoteItem.note.price">
+            2 dor <span class="interpunct">·</span> 4 bñs<span class="interpunct">·</span> 2 coch <span class="interpunct">·</span> 256 m2<br>
+            <span>{{MsNoteItem.note.address}}</span><br>
+        </md-description>
+        <!-- / NOTE DESCRIPTION -->
+
+
+
+
+
+
+        <!-- NOTE REMINDER -->
+        <div ng-if="vm.noteListType ==='reminders' && MsNoteItem.note.reminder" class="reminder secondary-text text-right">
+            <md-icon md-font-icon="icon-bell" class="s16 mr-8"></md-icon>
+            <span>
+                {{MsNoteItem.note.reminder | altDate}}
+            </span>
+        </div>
+        <!-- / NOTE REMINDER -->
+
+  
+
+    </md-card-content>
+
+    <md-card-actions layout="row" layout-align="end center">
+         <md-card-icon-actions layout="row" layout-align="space-between center">
+                
+                    <md-button class="md-icon-button" aria-label="Attach file" translate
+                               translate-attr-aria-label="TODO.ATTACH_FILE">
+                        <md-icon md-font-icon="icon-heart" class="s20"></md-icon>
+                    </md-button>
+
+                        <md-menu>
+                            <md-button class="md-icon-button" aria-label="More" translate
+                                       translate-attr-aria-label="CONTACTS.MORE">
+                                <md-icon md-font-icon="icon-share-variant" ng-click="$mdOpenMenu($event)"></md-icon>
+                            </md-button>
+
+                            <md-menu-content width="3">
+                                <md-menu-item>
+                                    <md-button ng-click="vm.deleteContactConfirm(contact, ev)">
+                                        Facebook
+                                        <md-icon md-font-icon="icon-facebook" class="s20"></md-icon>
+
+                                    </md-button>
+                                </md-menu-item>
+
+                                <md-divider></md-divider>
+
+                                <md-menu-item>
+                                    <md-button ng-click="vm.deleteContactConfirm(contact, ev)" >
+                                        Twitter
+                                        <md-icon md-font-icon="icon-twitter" class="s20"></md-icon>
+
+                                    </md-button>
+                                </md-menu-item>
+
+
+                            </md-menu-content>
+                        </md-menu>                    
+
+                
+        </md-card-icon-actions>
+    </md-card-footer>  
+
+</md-card>

@@ -1,0 +1,261 @@
+<div id="account" class="page-layout simple tabbed" layout="column">
+
+    <!-- HEADER -->
+        <div class="header md-accent-bg" layout="column" layout-align="space-between">
+            <div layout="row" layout-align="space-between">
+                <div>
+                    <span class="md-display-1 font-weight-300">
+                                 Oscar, </span>
+                    <span class="md-headline font-weight-100" translate="ACCOUNT.WELCOME">
+                                 bienvenido!</span>                                 
+                </div>
+
+                <div class="toolbar">
+                    <md-button class="md-icon-button sidenav-toggle" ng-click="vm.toggleSidenav('sidenav')" hide-gt-md
+                               aria-label="Toggle sidenav">
+                        <md-icon md-font-icon="icon-menu" class="icon"></md-icon>
+                    </md-button>
+                </div>
+            </div>
+
+        </div>    
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <md-tabs md-selected="vm.selectedIndex" md-dynamic-height>
+
+            <md-tab>
+                <md-tab-label>
+                    <span translate="ACCOUNT.HOME">Inicio</span>
+                </md-tab-label>
+
+                <md-tab-body>
+
+                </md-tab-body>
+            </md-tab>
+
+            <md-tab>
+                <md-tab-label>
+                    <span translate="ACCOUNT.PERSONAL_INFO">Información Personal</span>
+                </md-tab-label>
+
+                <md-tab-body>
+                    <div class="product-detail-form-container md-background-bg md-whiteframe-1dp">
+                        <form name="listForm">
+                            <div layout-gt-sm="row"   layout-align="start center">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.CONTACT_FIRST_NAME">Nombre</label>
+                                    <input type="text" ng-model="vm.user.name">
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.CONTACT_LAST_NAME">Apellido(s)</label>
+                                    <input type="text" ng-model="vm.user.lastName" >
+                                </md-input-container>
+                            </div>
+
+                            <div layout-gt-sm="row"  layout-align="start center">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.CONTACT_EMAIL">Correo</label>
+                                    <input type="text" ng-model="vm.user.email" >
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.CONTACT_PHONE">Teléfono</label>
+                                    <input  type="text" ng-model="vm.user.phone"
+                                            name="phone">                                          
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.CONTACT_MOBILE">Celular</label>
+                                    <input type="text" ng-model="vm.user.mobile">
+                                </md-input-container>
+                            </div>
+
+                            <div layout-gt-sm="row"  layout-align="start center">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.CONTACT_EMAIL">Correo</label>
+                                    <input type="text" ng-model="vm.user.email" >
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.CONTACT_PHONE">Teléfono</label>
+                                    <input  type="text" ng-model="vm.user.phone"
+                                            name="phone">                                          
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.CONTACT_COMPANY">Empresa</label>
+                                    <input type="text" ng-model="vm.user.company">
+                                </md-input-container>
+                            </div>
+
+                            <md-input-container class="md-block md-icon-float">
+                              <md-checkbox ng-model="vm.user.otherContact" 
+                                           aria-label="Checkbox 1">
+                                <span translate="EC.OTHER_CONTACT">Use other contact information?</span>
+                              </md-checkbox>                              
+                            </md-input-container>
+
+                            <div layout-gt-sm="row" layout-align="start center">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.OTHER_NAME">Name</label>
+                                    <input type="text" ng-model="vm.user.otherName"
+                                           name="otherName"
+                                           ng-required='vm.user.otherContact'>
+                                      <div ng-messages="listForm.otherName.$error">
+                                        <div ng-message="required">El nombre es requerido.</div>
+                                      </div>                                           
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.OTHER_EMAIL">Email</label>
+                                    <input type="email" name="otherEmail"
+                                           ng-model="vm.user.otherEmail">
+                                          <div ng-messages="listForm.otherEmail.$error">
+                                                <div ng-message="email">Digite una dirección de correo válida.</div>
+                                          </div>                                    
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.OTHER_PHONE">Phone</label>
+                                    <input type="text" ng-model="vm.user.otherPhone"
+                                            name="otherPhone">
+                                </md-input-container>
+                            </div>
+                            <div layout="row"  layout-align="center center">
+                                <md-button class="md-primary">Guardar</md-button>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </md-tab-body>
+            </md-tab>
+
+            <md-tab>
+                <md-tab-label>
+                    <span translate="ACCOUNT.PREFERENCES">Preferencias</span>
+                </md-tab-label>
+
+                <md-tab-body>
+                    <div class="product-detail-form-container md-background-bg md-whiteframe-1dp">
+                        <form>
+
+                            <div layout-gt-sm="row"  layout-align="start center">
+                              <md-input-container class="md-block">
+                                <label translate="ACCOUNT.STATE">Provincia</label>
+
+
+
+                              <md-select ng-model="vm.selectedState" md-autofocus>
+                                <md-option ng-value="state" ng-repeat="state in vm.state">{{ state.name }}</md-option>
+                              </md-select>
+                                <div class="errors" ng-messages="myForm.selectedState.$error">
+                                  <div ng-message="required">Required</div>
+                                </div>
+                              </md-input-container>
+                              <br>
+
+                              <md-input-container class="md-block">
+                                <label translate="ACCOUNT.COUNTY">Cantón</label>
+                                    <md-select name="selectedCounty" ng-model="selectedCounty" >
+
+                                        <md-option ng-value="county" ng-repeat="county in vm.county | filterByState:vm.selectedState.id">{{ county.name }}</md-option>
+
+                                    </md-select>
+                                <div class="errors" ng-messages="myForm.selectedCounty.$error">
+                                  <div ng-message="required">Required</div>
+                                </div>
+                              </md-input-container>
+
+
+                            </div>
+
+                            <div layout="row"  layout-align="space-between center">
+                                <md-button ng-click="vm.selectedIndex = 1" class="md-primary">Previous</md-button>                            
+                                <md-button ng-click="vm.selectedIndex = 3" class="md-primary">Next</md-button>
+                            </div>  
+                        </form>
+                    </div>
+                </md-tab-body>
+            </md-tab>
+
+
+            <md-tab>
+                <md-tab-label>
+                    <span translate="ACCOUNT.SECURITY">Seguridad</span>
+                </md-tab-label>
+
+                <md-tab-body>
+                    <div class="product-detail-form-container md-background-bg md-whiteframe-1dp">
+                        <form>
+
+                          <md-input-container class="md-block">
+                            <label>Modalidad</label>
+                            <md-select name="saleType" ng-model="vm.list.title" required>
+                              <md-option value="sale" selected>Venta</md-option>
+                              <md-option value="rent">Alquiler</md-option>
+                              <md-option value="both">Venta o alquiler</md-option>
+                            </md-select>
+                            <div class="errors" ng-messages="myForm.saleType.$error">
+                              <div ng-message="required">Required</div>
+                            </div>
+                          </md-input-container>
+                          <br>
+
+                          <md-input-container class="md-block">
+                            <label>Moneda</label>
+                            <md-select name="localCurrency" ng-model="vm.product.localCurrency" required>
+                              <md-option value="true" selected>Colones (CR₡)</md-option>
+                              <md-option value="false">Dólares (US$)</md-option>
+                            </md-select>
+                            <div class="errors" ng-messages="myForm.localCurrency.$error">
+                              <div ng-message="required">Required</div>
+                            </div>
+                          </md-input-container>
+                          <br>
+
+                        <div layout-gt-sm="row"  ng-show="vm.product.localCurrency == 'true' " layout-align="start center">
+
+                               <md-input-container class="md-block" ng-show="vm.product.saleType == 'sale' || vm.product.saleType == 'both' ">
+                                      <label translate="ACCOUNT.SALE_PRICE_LOCAL">Sale Price</label>
+                                     <input type="number" ng-model="vm.product.localPrice">
+                               </md-input-container>
+
+                               <md-input-container class="md-block" ng-show="vm.product.saleType == 'rent' || vm.product.saleType == 'both' ">
+                                      <label translate="ACCOUNT.RENT_PRICE_LOCAL">Rent Price</label>
+                                     <input type="number" ng-model="vm.product.localRentPrice">
+                               </md-input-container>
+
+                        </div>
+
+                        <div layout-gt-sm="row"  ng-show="vm.product.localCurrency == 'false' " layout-align="start center">
+                               <md-input-container class="md-block" ng-show="vm.product.saleType == 'sale' || vm.product.saleType == 'both' ">
+                                      <label translate="ACCOUNT.SALE_PRICE_DOL">Sale Price</label>
+                                     <input type="number" ng-model="vm.product.dolPrice">
+                               </md-input-container>
+
+                               <md-input-container class="md-block" ng-show="vm.product.saleType == 'rent' || vm.product.saleType == 'both' ">
+                                      <label translate="ACCOUNT.RENT_PRICE_DOL">Rent Price</label>
+                                     <input type="number" ng-model="vm.product.dolRentPrice">
+                               </md-input-container>
+                        </div>
+                        <div layout="row"  layout-align="space-between center">
+                            <md-button ng-click="vm.selectedIndex = 3" class="md-primary">Previous</md-button>                            
+                            <md-button ng-click="vm.selectedIndex = 5" class="md-primary">Next</md-button>
+                        </div>  
+
+                        </form>
+                    </div>
+                </md-tab-body>
+            </md-tab>
+
+        </md-tabs>
+
+    </div>
+    <!-- / CONTENT -->
+
+</div>

@@ -1,0 +1,11 @@
+{
+	"STEPPER2": "Hola1",  
+    "STEPPER": {
+        "TITLE": "Create an account",
+        "CONTROLS": {
+            "BACK": "ATRAS",
+            "NEXT": "SIGUIENTE",
+            "SUBMIT": "ENVIAR",
+        }
+    }
+}

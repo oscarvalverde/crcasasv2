@@ -1,0 +1,16 @@
+<div id="register-steps" class="flex-scrollable" layout="column" ms-scroll>
+    <div id="register-steps-form-wrapper" layout="column" layout-align="start center">
+        <div id="register-steps-form" class="md-whiteframe-8dp">
+
+            <!-- CONTENT  ng-if="vm.currentView === 'grid'" -->
+            <md-content class="content" flex ms-scroll>
+                <div ng-if="vm.currentView === 'step1'"
+                    <div ng-include="'app/main/pages/auth/register-steps/stepper-steps/step-1.html'"></div>
+                <div ng-if="vm.currentView === 'step2'"
+                    <div ng-include="'app/main/pages/auth/register-steps/stepper-steps/step-2.html'"></div>
+            </md-content>
+            <!-- / CONTENT -->
+
+        </div>
+    </div>
+</div>

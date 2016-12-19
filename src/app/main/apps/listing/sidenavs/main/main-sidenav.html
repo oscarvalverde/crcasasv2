@@ -1,0 +1,48 @@
+<!-- SIDENAV HEADER -->
+<div class="header md-padding" layout="row" layout-align="start center">
+
+    <!-- USER -->
+    <img ng-src="{{vm.user.avatar}}" class="md-avatar avatar mr-16"
+         alt="{{vm.user.name}}"/>
+    <span class="font-weight-500 font-size-14">{{vm.user.name}}</span>
+    <!-- / USER -->
+
+</div>
+<!-- / SIDENAV HEADER -->
+
+<md-divider></md-divider>
+
+<!-- SIDENAV CONTENT -->
+<div ms-scroll class="content">
+
+    <md-list>
+
+        <md-list-item ng-click="vm.filterChange('all')" ng-class="{'selected':vm.listType ==='all'}">
+            <p translate="LISTING.ALL_LISTING">
+                All contacts
+            </p>
+        </md-list-item>
+
+        <md-list-item ng-click="vm.filterChange('premium')" ng-class="{'selected':vm.listType ==='premium'}">
+            <p translate="LISTING.PREMIUM_ADS">
+                Premium Ads
+            </p>
+        </md-list-item>
+
+        <md-list-item ng-click="vm.filterChange('exclusive')" ng-class="{'selected':vm.listType ==='exclusive'}">
+            <p translate="LISTING.EXCLUSIVE_ADS">
+                Exclusive Ads
+            </p>
+        </md-list-item>
+
+        <md-list-item ng-click="vm.filterChange('basic')" ng-class="{'selected':vm.listType ==='basic'}">
+            <p translate="LISTING.BASIC_ADS">
+                Basic Ads
+            </p>
+        </md-list-item>
+
+
+    </md-list>
+
+</div>
+<!-- / SIDENAV CONTENT -->

@@ -1,0 +1,81 @@
+
+<div class="form-wrapper md-whiteframe-1dp" >
+
+    <form name="basicForm" class="md-inline-form" novalidate>
+
+          <div class="md-headline text-center" >Gracias {{ firebaseUser.displayName }}! Su cuenta está lista.</div>
+
+         <p>Para configurar su cuenta, por favor marque los usos principales que le dará a crcasas.</p>
+
+          <div layout="column"  >
+
+                     <md-input-container class="md-block" md-no-float>
+                        <md-checkbox    name="buyer" ng-model="vm.buyer" 
+                                       aria-label="Checkbox 1">
+                          Quiero comprar una propiedad
+                        </md-checkbox>                           
+                     </md-input-container>
+
+                     <md-input-container class="md-block" md-no-float>
+                        <md-checkbox   name="rent" ng-model="vm.rent"
+                                      aria-label="Checkbox 1">
+                          Quiero alquilar una propiedad
+                        </md-checkbox>                           
+                     </md-input-container>               
+
+                      <md-input-container class="md-block" md-no-float>
+                        <md-checkbox name="owner" ng-model="vm.owner"
+                                     aria-label="Checkbox 1">
+                           Tengo una propiedad y quiero anunciarla 
+                        </md-checkbox>                           
+                      </md-input-container>
+
+                      <md-input-container class="md-block" md-no-float>
+                        <md-checkbox  name="agent" ng-model="vm.agent"
+                                      aria-label="Checkbox 1">
+                           Soy corredor de bienes raíces y quiero anunciar mis propiedades 
+                        </md-checkbox>                           
+                      </md-input-container>
+
+          </div>
+
+
+ 
+    </form>
+
+
+</div>
+
+
+ <div layout="row" layout-align="start center">
+    <div layout="row" layout-align="start center" flex="50">
+         <md-button type="submit"
+                   class="md-accent" aria-label="CREATE MY ACCOUNT"
+                   ng-disabled="registerForm.$invalid || registerForm.$pristine">
+            REGRESAR
+        </md-button>                                    
+      </div>
+    <div layout="row" layout-align="end center" flex="50"> 
+        <div >
+         <md-button type="submit"
+                   ng-show="!vm.owner && !vm.agent"
+                   ng-disabled="!(v.owner || vm.agent || vm.buyer || vm.rent )"           
+                   class="md-primary" aria-label="CREATE MY ACCOUNT"
+                   ng-click="vm.currentView = 'step2'"
+                   ng-disabled="registerForm.$invalid || registerForm.$pristine">
+            CONTINUAR
+        </md-button>    
+         <md-button type="submit"
+                   ng-show="vm.owner || vm.agent"  
+                   class="md-accent" aria-label="CREATE MY ACCOUNT"
+                   ng-disabled="registerForm.$invalid || registerForm.$pristine">
+            CREAR ANUNCIO
+        </md-button>                                   
+        </div>                                   
+      
+      </div>
+
+    </div>
+
+
+

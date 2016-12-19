@@ -1,0 +1,25 @@
+{
+    "REGISTER_V2": {
+        "INTRO_TITLE": "Welcome to crCasas!",
+        "INTRO_DESCRIPTION": "¿Quiere comprar o alquilar una propiedad? ¿O quiere venderla? Cree su cuenta en crCasas para guardar sus propiedades favoritas, para anunciar, y para muchas otras cosas más.",
+        "TITLE": "Create an account",
+        "DESCRIPTION": "Puede crear una nueva cuenta con su correo electrónico o simplemente registrarse con su cuenta de Facebook o Google",
+        "NAME": "Name",
+        "EMAIL": "Email",
+        "PASSWORD": "Password",
+        "PASSWORD_CONFIRM": "Password (Confirm)",
+        "READ_ACCEPT": "I read and accept",
+        "TERMS_COND": "terms and conditions",
+        "CREATE_ACCOUNT": "CREATE MY ACCOUNT",
+        "ALREADY_HAVE": "Already have an account?",
+        "LOGIN": "Log in",
+        "ERRORS": {
+            "USERNAME_REQUIRED": "Username field is required",
+            "EMAIL_REQUIRED": "Email field is required",
+            "EMAIL_MUST_VALID": "Email must be a valid e-mail address",
+            "PASSWORD_REQUIRED": "Password field is required",
+            "PASSWORD_CONFIRM_REQUIRED": "Password confirm field is required",
+            "TERMS_REQUIRED": "You must accept terms and conditions before submitting the form"
+        }
+    }
+}

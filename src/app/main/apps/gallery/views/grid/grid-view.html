@@ -1,0 +1,50 @@
+<!-- GRID VIEW -->
+<div class="grid-view" layout="column">
+
+
+    <div class="files" layout="row" layout-wrap ui-sortable="vm.sortableListOptions" ng-model="vm.files">
+        <div ng-click="vm.select(file)" class="md-whiteframe-1dp item file" ng-repeat="file in vm.files | filter:global.search" layout="column">
+            <div class="preview">
+                <img ng-src="{{file.image}}">
+            </div>
+
+            <!-- CARD FOOTER -->
+            <div class="footer" layout="row" layout-align="space-between center">
+
+                <div layout="row" layout-align="start center">
+                     <!-- DELETE NOTE -->
+                    <md-button ng-click="vm.removeItem(vm.files, $index)" class="md-icon-button"
+                               aria-label="delete image">
+                        <md-icon md-font-icon="icon-delete"  class="s24"> </md-icon>
+                    </md-button>
+                    <!-- / DELETE NOTE --> 
+
+                </div>
+
+                <div layout="row" layout-align="end center">
+
+
+                    <!-- SAVE NOTE -->
+                    <md-button ng-click="vm.editImage()" class="md-icon-button">
+                        <md-icon md-font-icon="icon-upload"  class="s24"></md-icon>            
+                    </md-button>
+                    <!-- / SAVE NOTE -->
+
+                  
+
+                </div>
+            </div>
+            <!-- CARD FOOTER -->
+
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+</div>
+<!-- / GRID VIEW -->

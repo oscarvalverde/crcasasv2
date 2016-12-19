@@ -1,0 +1,56 @@
+<div id="forms" class="page-layout simple fullwidth doc-page" layout="column">
+
+    <!-- HEADER -->
+    <div class="header md-accent-bg" layout="row" layout-align="space-between">
+        <div layout="column" layout-align="space-between">
+            <div class="breadcrumb" layout="row" layout-align="start center">
+                <md-icon md-font-icon="icon-home" class="s16"></md-icon>
+                <md-icon md-font-icon="icon-chevron-right" class="s16 separator"></md-icon>
+                <span class="parent"
+                translate="STEPPER2">MIS ANUNCIOS</span>
+            </div>
+
+            <div class="title">Nuevo anuncio</div>
+        </div>
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content" layout="column">
+
+        <!-- STEPPER -->
+
+        <form name="stepper" ms-stepper ng-submit="vm.submitStepper()" ng-model="vm.stepper" novalidate>
+            <ms-stepper-step ng-form="step1" step="1" step-title="'Contacto'">
+                <div ng-include="'app/main/ui/forms/stepper-steps/step-1.html'"></div>
+            </ms-stepper-step>
+
+            <ms-stepper-step ng-form="step2" step="2" step-title="'Propiedad'" >
+                <div ng-include="'app/main/ui/forms/stepper-steps/step-2.html'"></div>
+            </ms-stepper-step>
+
+            <ms-stepper-step ng-form="step3" step="3" step-title="'Características'">
+                <div ng-include="'app/main/ui/forms/stepper-steps/step-3.html'"></div>
+            </ms-stepper-step>
+
+            <ms-stepper-step ng-form="step4" step="4" step-title="'Fotos'">
+                <div ng-include="'app/main/ui/forms/stepper-steps/step-4.html'"></div>
+            </ms-stepper-step>
+
+            <ms-stepper-step ng-form="step5" step="5" step-title="'Anuncio'">
+                <div ng-include="'app/main/ui/forms/stepper-steps/step-5.html'"></div>
+            </ms-stepper-step>
+
+
+        </form>
+        <!-- / STEPPER -->
+
+
+
+    </div>
+    <!-- / CONTENT -->
+
+
+
+
+</div>

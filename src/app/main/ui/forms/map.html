@@ -1,0 +1,22 @@
+    <script type="text/ng-template" id="control.tpl.html">
+		<md-button class="md-raised " ng-click="controlClick()">
+		    <div ng-show="!searching">
+			    <md-icon md-font-icon="icon-map-marker-radius"></md-icon>
+			    <span>Ir a mi dirección</span>
+		    </div>
+		    <div ng-show="searching">
+			    <md-icon md-font-icon="icon-refresh"></md-icon>
+			    <span>Localizando....</span>
+		    </div>		    
+		</md-button>
+    </script>
+
+    <ui-gmap-google-map center="map.center" zoom="map.zoom"
+    					control="map.control" 
+    					draggable="true" options="options">
+
+        <ui-gmap-map-control template="control.tpl.html" position="top-right" controller="ButtonController" index="-1"></ui-gmap-map-control>
+
+                <ui-gmap-marker coords="map.marker.coords" options="map.marker.options"  idkey="map.marker.id">
+        </ui-gmap-marker>
+    </ui-gmap-google-map>

@@ -1,0 +1,78 @@
+{
+    "data": {
+        "path":[
+          "My Files",
+          "Documents"
+        ],
+        "folders": [
+            {
+                "id": "1",     
+                "name": "Work Documents",
+                "type": "folder",
+                "owner": "me",
+                "size": "",
+                "modified": "July 8, 2015",
+                "opened": "July 8, 2015",
+                "created": "July 8, 2015",
+                "extention": "",
+                "location": "My Files > Documents",
+                "offline": true
+            }
+        ],
+        "files": [
+            {
+                "id": "2",     
+                "name": "Ongoing projects 1",
+                "type": "document",
+                "owner": "Emily Bennett",
+                "size": "1.2 Mb",
+                "modified": "July 8, 2015",
+                "opened": "July 8, 2015",
+                "created": "July 8, 2015",
+                "extention": "",
+                "location": "My Files > Documents",
+                "offline": true,
+                "preview": "assets/images/etc/sample-file-preview.jpg",
+                "selected": false,
+                "deleted": false,
+                "image": "http://lh3.googleusercontent.com/l4l37paYg47sMOFWADwEgt23fUVfRiRQZg4-A8CWEDt2p9lSOdJmcaZ0gzCUlHkVqAUekiVM8JetHMrfqgY",
+                "description": "Primera leyenda"                
+            },
+            {
+                "id": "3",                
+                "name": "Ongoing projects 2",
+                "type": "document",
+                "owner": "Emily Bennett",
+                "size": "1.2 Mb",
+                "modified": "July 8, 2015",
+                "opened": "July 8, 2015",
+                "created": "July 8, 2015",
+                "extention": "",
+                "location": "My Files > Documents",
+                "offline": true,
+                "preview": "assets/images/etc/sample-file-preview.jpg",
+                "selected": false,
+                "deleted": false,
+                "image": "http://lh3.googleusercontent.com/dVh8DRY-bPNFKoXWz1z2ZXh4a9bpHdxhpPL6lLA7XjCTIdT4XaBZ8EvQXD0qx21fGMxHN4FPdLu8HrNFfw",
+                "description": "Segunda leyenda"                
+            },
+            {
+                "name": "Ongoing projects 3",
+                "type": "document",
+                "owner": "Emily Bennett",
+                "size": "1.2 Mb",
+                "modified": "July 8, 2015",
+                "opened": "July 8, 2015",
+                "created": "July 8, 2015",
+                "extention": "",
+                "location": "My Files > Documents",
+                "offline": true,
+                "preview": "assets/images/etc/sample-file-preview.jpg",
+                "selected": false,
+                "deleted": false,
+                "image": "http://lh3.googleusercontent.com/UJMz7hk0bG-ipQLywf_SQExeQOS7lRDBLRGkrhnVTJPEiMNVM764XVuHTODiIKQwpUIr_8qZWOqhopbwxQ",
+                "description": "Tercera leyenda"                
+            } 
+        ]
+    }
+}

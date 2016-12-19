@@ -1,0 +1,103 @@
+<!-- CONTACT LIST -->
+<md-list class="images-list sortable-view" >
+
+    <!-- CONTACT LIST HEADER -->
+    <md-subheader class="md-no-sticky md-white-bg">
+
+        <div layout="row" layout-align="space-between center">
+
+            <div class="list-title" layout="row" layout-align="start center"
+                 ng-hide="editGroupForm.$visible">
+                <span ng-if="vm.listType === 'all'" translate="GALLERY.ALL_IMAGES">All images</span>
+                <span ng-if="vm.listType === 'frequent'" translate="GALLERY.SHARED">Shared</span>
+
+
+                <span ng-if="filteredImages.length" class="secondary-text images-count">
+                    ({{filteredImages.length}})
+                </span>
+            </div>
+
+
+            <div flex></div>
+
+
+
+        </div>
+
+    </md-subheader>
+    <!-- / CONTACT LIST HEADER -->
+
+<div class="files" ui-sortable="vm.sortableTableOptions"   ng-model="vm.files">
+    <!-- CONTACT ITEM -->
+    <md-list-item class="image-item md-white-bg" md-ink-ripple
+                  ng-repeat="file in vm.files | filter: global.search | filter:query as filteredImages track by file.id "
+                  ng-style="{'z-index': filteredImages.length - $index}"
+                  ng-class="{'selected': vm.isSelected(file)}">
+
+        <div class="handle" >
+            <md-icon md-font-icon="icon-drag-vertical" class="icon"></md-icon>
+        </div>
+
+            <md-checkbox id="checked" name="checked"  ng-checked="vm.exists(file, vm.selectedImages)"
+                         ng-click="vm.toggleSelectImage(file, $event)"
+                         aria-label="{{vm.exists(file, vm.selectedImages) ? 'Deselect' : 'Select'}}">
+            </md-checkbox>
+
+        <img class="md-avatar" ng-if="file.image" alt="{{file.name}}"
+                ng-click="$event.stopPropagation()"
+                ng-src="{{file.image}}"/>
+
+            <p  id="desc" name="desc" class="text-truncate font-weight-600" 
+                ng-click="$event.stopPropagation()">{{file.description}}</p>
+
+        <p  class="text-truncate font-weight-600" 
+            ng-click="$event.stopPropagation()">{{file.name}}</p>
+
+        <p  class="email text-truncate hide show-gt-sm"
+            ng-click="$event.stopPropagation()">
+            {{file.modified}}
+        </p>
+
+        <p  class="email text-truncate hide show-gt-sm"
+            ng-click="$event.stopPropagation()">
+            {{file.size}}
+        </p>
+
+        <div class="actions" layout="row" layout-align="start center">
+            <md-button class="md-icon-button  hide show-gt-xs"
+                       ng-click="$event.stopPropagation();"
+                       aria-label="Toggle starred" translate
+                       translate-attr-aria-label="CONTACTS.TOGGLE_STARRED">
+                <md-icon ng-if="vm.exists(file,vm.selectedImages)" md-font-icon="icon-star"
+                         class="amber-fg"></md-icon>
+                <md-icon ng-if="!vm.exists(file,vm.selectedImages)"
+                         md-font-icon="icon-star-outline"></md-icon>
+            </md-button>
+            <md-button class="md-icon-button"
+                       ng-click="" aria-label="Edit event"
+                       translate translate-attr-aria-label="GALLERY.EDIT_FILE">
+                <md-icon md-font-icon="icon-pencil"></md-icon>
+                <md-tooltip><span translate="GALLERY.EDIT_FILE">Edit File</span></md-tooltip>    
+            </md-button>               
+            <md-button class="md-icon-button"
+                       ng-click="" aria-label="Copy event"
+                       translate translate-attr-aria-label="GALLERY.COPY_FILE">
+                <md-icon md-font-icon="icon-content-copy"></md-icon>
+                <md-tooltip><span translate="GALLERY.COPY_FILE">Copy File</span></md-tooltip>        
+            </md-button> 
+                     
+            <md-button class="md-icon-button" ng-click="vm.deleteSelectedImages($event)"
+                       aria-label="delete selected" translate translate-attr-label="GALLERY.DELETE_FILE">
+                <md-icon md-font-icon="icon-delete"></md-icon>
+                <md-tooltip><span translate="GALLERY.DELETE_FILE">Delete File</span></md-tooltip>
+            </md-button>
+
+        </div>
+
+    </md-list-item>
+    <!-- CONTACT ITEM -->
+
+</div>
+
+</md-list>
+<!-- / CONTACT LIST -->

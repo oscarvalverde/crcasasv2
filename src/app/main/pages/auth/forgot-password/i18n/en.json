@@ -1,0 +1,16 @@
+{
+    "FORGOTPASSWORD": {
+        "TITLE": "Recover your password",
+        "DESCRIPTION": "Please provide the email address that you used when you signed up for your crCasas account. We will send you an email that will allow you to reset your password",        
+        "EMAIL_ADRESS": "Email address",
+        "SEND_RESET_LINK": "SEND RESET EMAIL",
+        "GO_BACK": "Go back to login",
+        "SUCCESS": "An email with password reset instructions has been sent to your email address, if it exists on our system.",        
+        "FAILURE": "Sucedió algo inesperado. Por favor intente más tarde o solicite ayuda a admin@crcasas.com",                
+            "ERRORS": {
+            "EMAIL_REQUIRED": "Email field is required",
+            "EMAIL_MUST_VALID": "Email must be a valid e-mail address"
+        }
+    }
+}
+

@@ -1,0 +1,26 @@
+{
+    "LOGIN_V2": {
+        "INTRO_TITLE": "Bienvenido a crCasas!",
+        "INTRO_DESCRIPTION": "¿Quiere comprar o alquilar una propiedad? ¿O quiere venderla? Ingrese a su cuenta en crCasas para guardar sus propiedades favoritas, para anunciar, y para muchas otras cosas más.",
+        "TITLE": "Ingresar a su cuenta",
+        "DESCRIPTION": "Ingrese con su correo y password, o con su cuenta de Facebook o Google",
+        "EMAIL": "Email",
+        "PASSWORD": "Password",
+        "REMEMBER_ME": "Recordarme",
+        "FORGOT_PASSWORD": "¿Olvidó el Password?",
+        "LOG_IN": "LOG IN",
+        "OR": "O",
+        "WITH_GOOGLE": "Ingresar con Google",
+        "WITH_FACEBOOK": "Ingresar con Facebook",
+        "DONT_HAVE_ACCOUNT": "¿No tiene cuenta aún?",
+        "CREATE_ACCOUNT": "Crear una cuenta",
+        "ERRORS": {
+            "EMAIL_REQUIRED": "El campo de correo es requerido",
+            "EMAIL_MUST_VALID": "El correo debe ser una dirección de correo válida",
+            "PASSWORD_REQUIRED": "El campo de password es requerido"
+        },
+        "AUTH_ERRORS": {
+            "WRONG_PASSWORD": "No fue posible autenticarlo. El password, o el correo podrían estar incorrectos. O podría ser que su cuenta fue registrada con Facebook o Google."
+        }        
+    }
+}

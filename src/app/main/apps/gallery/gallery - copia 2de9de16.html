@@ -1,0 +1,208 @@
+<div id="gallery" class="page-layout simple right-sidenav" layout="row" 
+                  id="file-uploader"
+                 flow-init="vm.ngFlowOptions"
+                 flow-name="vm.ngFlow.flow"
+                 flow-files-submitted="vm.upload()"
+                 flow-file-added="vm.fileAdded($file)"
+                 flow-file-success="vm.imageSuccess($file, $message)"
+                 flow-complete="vm.uploadComplete()"
+                 flow-file-added="!!{svg:1,png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]">
+
+
+    <!-- MAIN SIDENAV (EXTRA SIDENAV) -->
+    <md-sidenav class="main-sidenav" md-component-id="main-sidenav"
+                ng-include="'app/main/apps/gallery/sidenavs/main/main-sidenav.html'" ms-scroll ms-sidenav-helper>
+    </md-sidenav>
+    <!-- / MAIN SIDENAV (EXTRA SIDENAV) -->
+
+    <!-- CENTER -->
+    <div class="center" layout="column" flex>
+
+        <!-- HEADER -->
+        <div class="header md-accent-bg">
+
+            <div class="header-content" layout="column" layout-align="space-between">
+
+                <!-- TOOLBAR -->
+                <div class="toolbar" layout="row" layout-align="space-between">
+
+                    <md-button class="md-icon-button main-sidenav-toggle" ng-click="vm.toggleSidenav('main-sidenav')"
+                               aria-label="Toggle Main Sidenav" translate
+                               translate-attr-aria-label="FILE.TOOGLE_MAIN_SIDENAV">
+                        <md-icon md-font-icon="icon-menu" class="icon"></md-icon>
+                    </md-button>
+
+                    <div class="right-side" layout="row">
+                        <md-button class="md-icon-button" aria-label="Search" translate
+                                   translate-attr-aria-label="GALLERY.SEARCH">
+                            <md-icon md-font-icon="icon-magnify"></md-icon>
+                            <md-tooltip><span translate="GALLERY.SEARCH">Search</span></md-tooltip>
+                        </md-button>
+
+                        <md-button ng-if="vm.currentView === 'list'" class="md-icon-button"
+                                   ng-click="vm.toggleView()"
+                                   aria-label="view type" translate
+                                   translate-attr-aria-label="GALLERY.GRID_VIEW">
+                            <md-icon md-font-icon="icon-view-module"></md-icon>
+                            <md-tooltip><span translate="GALLERY.GRID_VIEW">Grid View</span></md-tooltip>
+                        </md-button>
+
+                        <md-button ng-if="vm.currentView === 'grid'" class="md-icon-button" aria-label="view type"
+                                   ng-click="vm.toggleView()" translate
+                                   translate-attr-aria-label="GALLERY.LIST_VIEW">
+                            <md-icon md-font-icon="icon-view-headline"></md-icon>
+                            <md-tooltip><span translate="GALLERY.LIST_VIEW">List View</span></md-tooltip>
+                        </md-button>
+                    </div>
+                </div>
+                <!-- / TOOLBAR -->
+
+            </div>
+
+            <!-- ADD FILE BUTTON      vm.fileAdded($file) "!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]" -->
+            <div >
+
+                <md-button flow-btn class="add-file-button md-fab md-warn"
+                           ng-click="vm.addFile($event)" aria-label="Add file" translate
+                           translate-attr-aria-label="GALLERY.ADD_FILE">
+                    <md-icon md-font-icon="icon-plus"></md-icon>
+                    <md-tooltip><span translate="GALLERY.ADD_FILE">Add File</span></md-tooltip>
+                </md-button>
+            </div>
+            <!-- / ADD FILE BUTTON -->
+
+
+
+
+        </div>
+        <!-- / HEADER -->
+
+
+    <!-- SELECTED BAR -->
+    <div ng-show="vm.selectedImages.length > 0" class="selected-bar header animate-slide-down md-accent-bg"
+         layout="row" layout-align="start center">
+
+        <div class="close-button-wrapper" ng-click="vm.selectedImages =[]">
+            <md-button layout="row" layout-align="start center">
+                <md-icon md-font-icon="icon-arrow-left" class="mr-8"></md-icon>
+                <span translate="GALLERY.BACK">Back</span>
+            </md-button>
+        </div>
+
+        <div flex layout="row" layout-align="space-between center">
+
+            <div>
+                <span class="selected-images-count">
+                    <span>{{vm.selectedImages.length}}</span>
+                    <span translate="GALLERY.SELECTED">selected</span>
+                </span>
+
+                <md-menu class="select-menu" ng-if="!vm.currentThread">
+                    <md-button class="md-icon-button"
+                               ng-click="$mdOpenMenu($event)"
+                               aria-label="multi select toggle"
+                               translate translate-attr-aria-label="GALLERY.MULTI_SELECT_TOGGLE">
+                        <md-icon md-font-icon="icon-menu-down"></md-icon>
+                    </md-button>
+                    <md-menu-content width="3">
+                        <md-menu-item>
+                            <md-button ng-click="vm.selectAllImages()" translate="GALLERY.SELECT_ALL">
+                                Select all
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click="vm.deselectImages()" translate="GALLERY.SELECT_NONE">
+                                Select none
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </div>
+
+            <div class="multi-select-actions">
+                <md-button class="md-icon-button" ng-click="vm.deleteSelectedImages($event)"
+                           aria-label="delete selected" translate translate-attr-label="GALLERY.DELETE_SELECTED">
+                    <md-icon md-font-icon="icon-delete"></md-icon>
+                </md-button>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- / SELECTED BAR -->
+        <!-- CONTENT CARD -->
+        <div class="content-card" layout="column" flex>
+
+            <!-- CONTENT TOOLBAR -->
+            <div class="toolbar " layout="row" layout-align="end center" ng-if="!vm.showToolbar()">
+
+                <div layout="row" layout-align="end center" >
+                    <md-select class="simplified" ng-model="vm.taskOrder" placeholder="Order"
+                               ng-change="vm.taskOrderDescending = vm.taskOrder === '' ? false : vm.taskOrderDescending">
+                        <md-option value="startDateTimestamp" translate="TODO.START_DATE">Start Date</md-option>
+                        <md-option value="dueDateTimestamp" translate="TODO.DUE_DATE">Due Date</md-option>
+                        <md-option value="" translate="TODO.MANUAL">Manual</md-option>
+                        <md-option value="title" translate="TODO.TITLE">Title</md-option>
+                    </md-select>
+
+                    <md-button class="md-icon-button" ng-disabled="vm.taskOrder === ''"
+                               ng-click="vm.taskOrderDescending = !vm.taskOrderDescending"
+                               aria-label="Sort Direction"
+                               translate translate-attr-aria-label="TODO.SORT_DIRECTION">
+                        <md-icon md-font-icon="icon-sort-ascending" ng-if="vm.taskOrderDescending === false"></md-icon>
+                        <md-icon md-font-icon="icon-sort-descending" ng-if="vm.taskOrderDescending === true"></md-icon>
+                    </md-button>
+                </div>
+
+                <div layout="row" layout-align="end center" class="tb" ng-if="vm.showToolbar">
+                    <md-button ng-click="vm.removeItem(vm.files, $index)" class="md-icon-button"
+                               aria-label="delete image">
+                        <md-icon md-font-icon="icon-delete"  class="s24"> </md-icon>
+                    </md-button>
+                </div>
+
+            </div>
+            <!-- / CONTENT TOOLBAR -->
+
+            <!-- CONTENT TOOLBAR 2 -->
+            <div class="toolbar-selected" layout="row" layout-align="end center" ng-if="vm.showToolbar()">
+
+
+                <div layout="row" layout-align="end center" >
+                    <p> {{ countItemsSelected() }} </p>
+                    <md-button ng-click="vm.removeItem(vm.files, $index)" class="md-icon-button"
+                               aria-label="delete image">
+                        <md-icon md-font-icon="icon-delete"  class="s24"> </md-icon>
+                    </md-button>
+                </div>
+
+            </div>
+            <!-- / CONTENT TOOLBAR 2 -->
+
+
+            <!-- CONTENT -->
+            <md-content class="content" flex ms-scroll>
+                <div ng-if="vm.currentView === 'grid'"
+                     ng-include="'app/main/apps/gallery/views/grid/grid-view.html'"></div>
+                <div ng-if="vm.currentView === 'list'"
+                     ng-include="'app/main/apps/gallery/views/list/list-view.html'"></div>
+                <div ng-if="vm.currentView === 'editor'"
+                     ng-include="'app/main/apps/gallery/views/editor/editor-view.html'"></div>
+            </md-content>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARDb-->        
+
+    </div>
+    <!-- / CENTER -->
+
+    <!-- SIDENAV -->
+    <md-sidenav class="sidenav details-sidenav md-sidenav-right" md-is-locked-open="$mdMedia('gt-md')"
+                md-component-id="details-sidenav"
+                ng-include="'app/main/apps/gallery/sidenavs/details/details-sidenav.html'" ms-scroll
+                ms-sidenav-helper>
+    </md-sidenav>
+    <!-- / SIDENAV -->
+
+</div>

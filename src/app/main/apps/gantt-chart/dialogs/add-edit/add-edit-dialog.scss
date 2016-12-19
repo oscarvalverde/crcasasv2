@@ -1,0 +1,43 @@
+md-dialog {
+
+    &.gantt-chart-add-edit {
+        width: 480px;
+        max-width: 480px;
+        overflow: hidden;
+
+        md-dialog-content {
+            position: relative;
+            padding: 0;
+
+            md-dialog-actions {
+                border-top: 1px solid rgba(0, 0, 0, .12);
+                background-color: rgba(0, 0, 0, .03);
+            }
+
+        }
+    }
+}
+
+// RESPONSIVE
+@media screen and (max-width: $layout-breakpoint-sm) {
+
+    md-dialog {
+
+        &.gantt-chart-add-edit {
+            width: 80%;
+            md-dialog-content .form-content .input-block {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $layout-breakpoint-xs) {
+
+    md-dialog {
+
+        &.gantt-chart-add-edit {
+            width: 90%;
+        }
+    }
+}

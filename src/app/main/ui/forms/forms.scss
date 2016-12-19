@@ -1,0 +1,89 @@
+#forms {
+
+
+    .content {
+
+        input.read-only[disabled] {
+           // styles when the element is disabled
+           color: rgba(0,0,0,0.87);;
+        }    
+
+        h3 {
+
+            font-weight: 700;
+
+        }
+
+        .form-wrapper {
+
+        }
+        
+        .form-data-wrapper {
+            margin-left: 16px;
+
+            .json-data-wrapper {
+                overflow: hidden;
+
+                pre {
+                    font-size: 16px;
+                }
+            }
+        }
+
+
+
+
+            .my-drop-zone2 { border: dotted 3px lightgray; }
+            .nv-file-over2 { border: dotted 3px red; } /* Default class applied to drop zones on over */
+            .another-file-over-class2 { border: dotted 3px green; }
+
+            #uploadBtn > input[type="file"] {
+              display: none;
+            }
+                
+            .canvas {
+                background-color: #f3f3f3;
+                -webkit-box-shadow: 3px 3px 3px 0 #e3e3e3;
+                -moz-box-shadow: 3px 3px 3px 0 #e3e3e3;
+                box-shadow: 3px 3px 3px 0 #e3e3e3;
+                border: 1px solid #c3c3c3;
+                height: 100px;
+                margin: 6px 0 0 6px;
+            } 
+
+    .template-1 {
+
+        background: red;
+
+        .info {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.54);
+        }
+
+        .media {
+            z-index: 1;
+
+            .image {
+                width: 100%;
+            }
+        }
+
+
+            .canvas {
+                background-color: #f3f3f3;
+                -webkit-box-shadow: 3px 3px 3px 0 #e3e3e3;
+                -moz-box-shadow: 3px 3px 3px 0 #e3e3e3;
+                box-shadow: 3px 3px 3px 0 #e3e3e3;
+                border: 1px solid #c3c3c3;
+                height: 100px;
+                margin: 6px 0 0 6px;
+            } 
+    }
+
+
+    }
+}

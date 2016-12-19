@@ -1,0 +1,403 @@
+<div id="e-commerce-product" class="page-layout simple tabbed" layout="column">
+
+    <!-- HEADER -->
+    <div class="header md-accent-bg" layout="row" layout-align="start center">
+        <div class="white-fg" layout="row" layout-align="start center" flex>
+            <md-button class="goto-products-button md-icon-button" aria-label="Go to products"
+                       ng-click="vm.gotoProducts()"
+                       translate translate-attr-aria-label="EC.GO_TO_PRODUCTS">
+                <md-icon md-font-icon="icon-arrow-left"></md-icon>
+            </md-button>
+
+            <div layout="row" layout-align="start center">
+                <div class="product-image" hide-xs>
+                    <img ng-src="{{vm.list.imageUrl}}">
+                </div>
+
+                <div layout="column" layout-align="start start">
+                    <div class="h2">
+                        {{vm.list.title}}
+                    </div>
+                    <div class="subtitle secondary-text">
+                        <span translate="EC.PRODUCT_DETAIL">Product Detail</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <md-button class="md-raised md-background">
+                <span translate="EC.SAVE">SAVE</span>
+            </md-button>
+        </div>
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <md-tabs md-selected="vm.selectedIndex" md-dynamic-height>
+
+            <md-tab>
+                <md-tab-label>
+                    <span translate="EC.CONTACT_INFO">Contact Info</span>
+                </md-tab-label>
+
+                <md-tab-body>
+                    <div class="product-detail-form-container md-background-bg md-whiteframe-1dp">
+                        <form name="listForm">
+                            <div layout-gt-sm="row"   layout-align="start center">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.CONTACT_FIRST_NAME">Nombre</label>
+                                    <input type="text" ng-model="vm.list.name" ng-readonly="true">
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.CONTACT_LAST_NAME">Apellido(s)</label>
+                                    <input type="text" ng-model="vm.list.lastName" ng-readonly="true">
+                                </md-input-container>
+                            </div>
+
+                            <div layout-gt-sm="row"  layout-align="start center">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.CONTACT_EMAIL">Correo</label>
+                                    <input type="text" ng-model="vm.list.email" ng-readonly="true">
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.CONTACT_PHONE">Teléfono</label>
+                                    <input  type="text" ng-model="vm.list.phone"
+                                            name="phone" 
+                                            autofocus>                                          
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.CONTACT_COMPANY">Empresa</label>
+                                    <input type="text" ng-model="vm.list.company">
+                                </md-input-container>
+                            </div>
+
+
+
+                            <md-input-container class="md-block md-icon-float">
+                              <md-checkbox ng-model="vm.list.otherContact" 
+                                           aria-label="Checkbox 1">
+                                <span translate="EC.OTHER_CONTACT">Use other contact information?</span>
+                              </md-checkbox>                              
+                            </md-input-container>
+
+                            <div layout-gt-sm="row"  ng-show="vm.list.otherContact" layout-align="start center">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.OTHER_NAME">Name</label>
+                                    <input type="text" ng-model="vm.list.otherName"
+                                           name="otherName"
+                                           ng-required='vm.list.otherContact'>
+                                      <div ng-messages="listForm.otherName.$error">
+                                        <div ng-message="required">El nombre es requerido.</div>
+                                      </div>                                           
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.OTHER_EMAIL">Email</label>
+                                    <input type="email" name="otherEmail"
+                                           ng-model="vm.list.otherEmail">
+                                          <div ng-messages="listForm.otherEmail.$error">
+                                                <div ng-message="email">Digite una dirección de correo válida.</div>
+                                          </div>                                    
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.OTHER_PHONE">Phone</label>
+                                    <input type="text" ng-model="vm.list.otherPhone"
+                                            name="otherPhone">
+                                </md-input-container>
+                            </div>
+                            <div layout="row"  layout-align="end center">
+                                <md-button ng-click="vm.selectedIndex = 1" class="md-primary">Next</md-button>
+                            </div>
+
+                        </form>
+                    </div>
+                </md-tab-body>
+            </md-tab>
+
+            <md-tab>
+                <md-tab-label>
+                    <span translate="EC.BASIC_INFO">Basic Info</span>
+                </md-tab-label>
+
+                <md-tab-body>
+                    <div class="product-detail-form-container md-background-bg md-whiteframe-1dp">
+                        <form>
+                            <md-input-container class="md-block">
+                                <label translate="EC.PRODUCT_NAME">Product Name</label>
+                                <input type="text" ng-model="vm.list.title">
+                            </md-input-container>
+
+                            <h3 class="secondary-text" translate="EC.PRODUCT_DESCRIPTION">Product Description</h3>
+                            <text-angular ta-toolbar="vm.taToolbar" ng-model="vm.list.title"></text-angular>
+
+                            <md-input-container class="md-block">
+                                <label translate="EC.CATEGORIES">Categories</label>
+                                <md-select ng-model="vm.product.categories"
+                                           md-on-open="vm.onCategoriesSelectorOpen()"
+                                           md-on-close="vm.onCategoriesSelectorClose()" multiple>
+                                    <md-select-header>
+                                        <input type="search" class="md-text"
+                                               ng-model="vm.categoriesSelectFilter" placeholder="Search for a category">
+                                    </md-select-header>
+                                    <md-optgroup>
+                                        <md-option ng-value="category"
+                                                   ng-repeat="category in vm.product.categories | filter:vm.categoriesSelectFilter">
+                                            {{category}}
+                                        </md-option>
+                                    </md-optgroup>
+                                </md-select>
+                            </md-input-container>
+
+                            <h3 class="tags secondary-text" translate="EC.TAGS">Tags</h3>
+
+                            <div layout="row"  layout-align="space-between center">
+                                <md-button ng-click="vm.selectedIndex = 0" class="md-primary">Previous</md-button>                            
+                                <md-button ng-click="vm.selectedIndex = 2" class="md-primary">Next</md-button>
+                            </div>                            
+                        </form>
+                    </div>
+                </md-tab-body>
+            </md-tab>
+
+            <md-tab>
+                <md-tab-label>
+                    <span translate="EC.ADDRESS">Address</span>
+                </md-tab-label>
+
+                <md-tab-body>
+                    <div class="product-detail-form-container md-background-bg md-whiteframe-1dp">
+                        <form>
+
+                            <div layout-gt-sm="row"  layout-align="start center">
+                              <md-input-container class="md-block">
+                                <label translate="EC.STATE">Provincia</label>
+
+
+
+                              <md-select ng-model="vm.selectedState" md-autofocus>
+                                <md-option ng-value="state" ng-repeat="state in vm.state">{{ state.name }}</md-option>
+                              </md-select>
+                                <div class="errors" ng-messages="myForm.selectedState.$error">
+                                  <div ng-message="required">Required</div>
+                                </div>
+                              </md-input-container>
+                              <br>
+
+                              <md-input-container class="md-block">
+                                <label translate="EC.COUNTY">Cantón</label>
+                                    <md-select name="selectedCounty" ng-model="selectedCounty" >
+
+                                        <md-option ng-value="county" ng-repeat="county in vm.county | filterByState:vm.selectedState.id">{{ county.name }}</md-option>
+
+                                    </md-select>
+                                <div class="errors" ng-messages="myForm.selectedCounty.$error">
+                                  <div ng-message="required">Required</div>
+                                </div>
+                              </md-input-container>
+
+
+                            </div>
+
+                            <div layout="row"  layout-align="space-between center">
+                                <md-button ng-click="vm.selectedIndex = 1" class="md-primary">Previous</md-button>                            
+                                <md-button ng-click="vm.selectedIndex = 3" class="md-primary">Next</md-button>
+                            </div>  
+                        </form>
+                    </div>
+                </md-tab-body>
+            </md-tab>
+
+            <md-tab>
+                <md-tab-label>
+                    <span translate="EC.PRODUCT_IMAGES">Images</span>
+                </md-tab-label>
+
+                <md-tab-body>
+                    <div class="product-detail-form-container md-background-bg md-whiteframe-1dp">
+                        <div id="product-image-uploader"
+                             flow-init="vm.ngFlowOptions"
+                             flow-name="vm.ngFlow.flow"
+                             flow-files-submitted="vm.upload()"
+                             flow-file-added="vm.fileAdded($file)"
+                             flow-file-success="vm.fileSuccess($file, $message)"
+                             flow-complete="vm.uploadComplete()"
+                             flow-drop
+                             flow-drag-enter="vm.dropping=true"
+                             flow-drag-leave="vm.dropping=false"
+                             ng-class="{'dropping':vm.dropping}">
+
+                            <div class="drop-text hint-text" layout="row" layout-align="center center">
+                                <span translate="EC.DROP_TO_UPLOAD">Drop to upload</span>
+                            </div>
+
+                            <div class="upload-button" layout="column" layout-align="center center">
+                                <md-button class="md-accent md-raised" translate="EC.UPLOAD_BUTTON" flow-btn>
+                                    Upload
+                                </md-button>
+                                <span class="secondary-text mt-8 text-center" translate="EC.UPLOAD_MESSAGE">You can also drop images here to upload. Only PNG, JPG - Max. 8MB</span>
+                            </div>
+
+                            <div class="list-images" 
+                                ui-sortable="vm.sortableCardOptions" ng-model="vm.list.images"
+                                layout="row" layout-align="start start" layout-wrap>
+                                <div class="list-image" ng-repeat="image in vm.list.images" 
+                                ng-switch="image.type">
+                                    <div class="product-image uploading" ng-switch-when="uploading" layout="row"
+                                         layout-align="center center">
+                                        <div class="overlay" layout="column" layout-align="center center">
+                                            <md-progress-linear md-mode="determinate"
+                                                                value="{{image.file.progress() * 100}}">
+                                            </md-progress-linear>
+                                        </div>
+                                        <img class="media" flow-img="image.file">
+                                    </div>
+
+                                    <div class="product-image" ng-switch-when="image" layout="row"
+                                         layout-align="center center">
+                                        <img class="media" ng-src="{{image.url}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <canvas id="wmCanvas" width="240" height="297" hidden></canvas>
+<img id="wmImg" width="64" height="64" src="assets/images/logos/crcasas.svg" alt="logo" hidden>                            
+
+                            <div layout="row"  layout-align="space-between center">
+                                <md-button ng-click="vm.selectedIndex = 2" class="md-primary">Previous</md-button>                            
+                                <md-button ng-click="vm.selectedIndex = 4" class="md-primary">Next</md-button>
+                            </div> 
+
+                        </div>
+                    </div>
+                     
+                </md-tab-body>
+            </md-tab>
+
+            <md-tab>
+                <md-tab-label>
+                    <span translate="EC.PRICE">Price</span>
+                </md-tab-label>
+
+                <md-tab-body>
+                    <div class="product-detail-form-container md-background-bg md-whiteframe-1dp">
+                        <form>
+
+                          <md-input-container class="md-block">
+                            <label>Modalidad</label>
+                            <md-select name="saleType" ng-model="vm.list.title" required>
+                              <md-option value="sale" selected>Venta</md-option>
+                              <md-option value="rent">Alquiler</md-option>
+                              <md-option value="both">Venta o alquiler</md-option>
+                            </md-select>
+                            <div class="errors" ng-messages="myForm.saleType.$error">
+                              <div ng-message="required">Required</div>
+                            </div>
+                          </md-input-container>
+                          <br>
+
+                          <md-input-container class="md-block">
+                            <label>Moneda</label>
+                            <md-select name="localCurrency" ng-model="vm.product.localCurrency" required>
+                              <md-option value="true" selected>Colones (CR₡)</md-option>
+                              <md-option value="false">Dólares (US$)</md-option>
+                            </md-select>
+                            <div class="errors" ng-messages="myForm.localCurrency.$error">
+                              <div ng-message="required">Required</div>
+                            </div>
+                          </md-input-container>
+                          <br>
+
+                        <div layout-gt-sm="row"  ng-show="vm.product.localCurrency == 'true' " layout-align="start center">
+
+                               <md-input-container class="md-block" ng-show="vm.product.saleType == 'sale' || vm.product.saleType == 'both' ">
+                                      <label translate="EC.SALE_PRICE_LOCAL">Sale Price</label>
+                                     <input type="number" ng-model="vm.product.localPrice">
+                               </md-input-container>
+
+                               <md-input-container class="md-block" ng-show="vm.product.saleType == 'rent' || vm.product.saleType == 'both' ">
+                                      <label translate="EC.RENT_PRICE_LOCAL">Rent Price</label>
+                                     <input type="number" ng-model="vm.product.localRentPrice">
+                               </md-input-container>
+
+                        </div>
+
+                        <div layout-gt-sm="row"  ng-show="vm.product.localCurrency == 'false' " layout-align="start center">
+                               <md-input-container class="md-block" ng-show="vm.product.saleType == 'sale' || vm.product.saleType == 'both' ">
+                                      <label translate="EC.SALE_PRICE_DOL">Sale Price</label>
+                                     <input type="number" ng-model="vm.product.dolPrice">
+                               </md-input-container>
+
+                               <md-input-container class="md-block" ng-show="vm.product.saleType == 'rent' || vm.product.saleType == 'both' ">
+                                      <label translate="EC.RENT_PRICE_DOL">Rent Price</label>
+                                     <input type="number" ng-model="vm.product.dolRentPrice">
+                               </md-input-container>
+                        </div>
+                        <div layout="row"  layout-align="space-between center">
+                            <md-button ng-click="vm.selectedIndex = 3" class="md-primary">Previous</md-button>                            
+                            <md-button ng-click="vm.selectedIndex = 5" class="md-primary">Next</md-button>
+                        </div>  
+
+                        </form>
+                    </div>
+                </md-tab-body>
+            </md-tab>
+
+
+
+            <md-tab>
+                <md-tab-label>
+                    <span translate="EC.SHIPPING">Shipping</span>
+                </md-tab-label>
+
+                <md-tab-body>
+                    <div class="product-detail-form-container md-background-bg md-whiteframe-1dp">
+                        <form>
+                            <div layout-gt-sm="row" layout-align="start center">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.WIDTH">Width</label>
+                                    <input type="text" ng-model="vm.product.width">
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.HEIGHT">Height</label>
+                                    <input type="text" ng-model="vm.product.height">
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="EC.DEPTH">Depth</label>
+                                    <input type="text" ng-model="vm.product.depth">
+                                </md-input-container>
+                            </div>
+
+                            <md-input-container class="md-block">
+                                <label translate="EC.WEIGHT">Weight</label>
+                                <input type="text" ng-model="vm.product.weight">
+                            </md-input-container>
+
+                            <md-input-container class="md-block md-icon-float">
+                                <label translate="EC.EXTRA_SHIPPING_FEE">Extra Shipping Fee</label>
+                                <md-icon md-font-icon="icon icon-currency-usd"></md-icon>
+                                <input type="text" ng-model="vm.product.extraShippingFee">
+                            </md-input-container>
+
+                            <div layout="row"  layout-align="space-between center">
+                                <md-button ng-click="vm.selectedIndex = 4" class="md-primary">Previous</md-button>                            
+                                <md-button ng-click="" class="md-primary">Guardar</md-button>
+                            </div>  
+
+                        </form>
+                    </div>
+                </md-tab-body>
+            </md-tab>
+        </md-tabs>
+
+    </div>
+    <!-- / CONTENT -->
+
+</div>

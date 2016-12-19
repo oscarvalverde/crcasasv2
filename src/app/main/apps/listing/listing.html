@@ -1,0 +1,317 @@
+<div id="listing" class="page-layout simple fullwidth" >
+
+    <!-- HEADER -->
+    <div class="header md-accent-bg" layout="row" layout-align="space-between">
+
+        <!-- APP TITLE -->
+        <div layout="row" layout-align="start center">
+            <md-button class="md-icon-button sidenav-toggle" 
+                            hide-gt-md ng-click="vm.toggleSidenav('sidenav')"
+                            aria-label="Toggle sidenav" 
+                            translate translate-attr-aria-label="LISTING.TOGGLE_SIDENAV">
+                <md-icon md-font-icon="icon-menu" class="icon"></md-icon>
+            </md-button>
+
+            <div class="logo" layout="row" layout-align="start center">
+                <span class="logo-icon">
+                    <md-icon md-font-icon="icon-account-box" class="s24"></md-icon>
+                </span>
+                <span class="logo-text" translate="LISTING.LISTING">Listing</span>
+            </div>
+        </div>
+        <!-- / APP TITLE -->
+
+        <!-- TOOLBAR -->
+        <div class="toolbar" layout="row" layout-align="start center">
+            <md-button ng-if="vm.currentView === 'list'" class="md-icon-button"
+                       ng-click="vm.toggleView()"
+                       aria-label="view type" translate
+                       translate-attr-aria-label="GALLERY.GRID_VIEW">
+                <md-icon md-font-icon="icon-view-module"></md-icon>
+                <md-tooltip><span translate="GALLERY.GRID_VIEW">Grid View</span></md-tooltip>
+            </md-button>
+
+            <md-button ng-if="vm.currentView === 'grid'" class="md-icon-button" aria-label="view type"
+                       ng-click="vm.toggleView()" translate
+                       translate-attr-aria-label="GALLERY.LIST_VIEW">
+                <md-icon md-font-icon="icon-trending-up"></md-icon>
+                <md-tooltip><span translate="GALLERY.LIST_VIEW">List View</span></md-tooltip>
+            </md-button>
+
+
+        </div>
+    <!-- / TOOLBAR -->
+
+
+    </div>
+    <!-- / HEADER -->
+
+    <!-- SELECTED BAR -->
+    <div ng-show="vm.selectedRows.length > 0" class="selected-bar header animate-slide-down md-accent-bg"
+         layout="row" layout-align="start center">
+
+        <div class="close-button-wrapper" ng-click="vm.selectedRows =[]">
+            <md-button layout="row" layout-align="start center">
+                <md-icon md-font-icon="icon-arrow-left" class="mr-8"></md-icon>
+                <span translate="LISTING.BACK">Back</span>
+            </md-button>
+        </div>
+
+        <div flex layout="row" layout-align="space-between center">
+
+            <div>
+                <span class="selected-rows-count">
+                    <span>{{vm.selectedRows.length}}</span>
+                    <span translate="LISTING.SELECTED">selected</span>
+                </span>
+
+                <md-menu class="select-menu" ng-if="!vm.currentThread">
+                    <md-button class="md-icon-button"
+                               ng-click="$mdOpenMenu($event)"
+                               aria-label="multi select toggle"
+                               translate translate-attr-aria-label="LISTING.MULTI_SELECT_TOGGLE">
+                        <md-icon md-font-icon="icon-menu-down"></md-icon>
+                    </md-button>
+                    <md-menu-content width="3">
+                        <md-menu-item>
+                            <md-button ng-click="vm.selectAllRows()" translate="LISTING.SELECT_ALL">
+                                Select all
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click="vm.deselectRows()" translate="LISTING.SELECT_NONE">
+                                Select none
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </div>
+
+            <div class="multi-select-actions">
+                <md-button class="md-icon-button" ng-click="vm.deleteSelectedRows($event)"
+                           aria-label="delete selected" translate translate-attr-label="LISTING.DELETE_SELECTED">
+                    <md-icon md-font-icon="icon-delete"></md-icon>
+                </md-button>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- / SELECTED BAR -->
+
+
+    <!-- CONTENT -->
+    <div class="content"  md-background-bg layout="row" layout-align="start start" >
+
+        <!-- MAIN -->
+        <div class="main" ms-scroll>
+
+
+            <div class="content fullpage-datatable" layout="column" flex>
+
+
+
+                <table  class="dataTable row-border hover" datatable="ng" dt-instance="vm.dtInstance"
+                        dt-options="vm.dtOptions">
+                    <thead>
+                        <tr>
+                            <th>
+                                            
+                            </th>
+                            <th> </th>
+
+                            <th>
+                                <div class="table-header">
+                                    <span class="column-title">ID</span>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="table-header">
+                                    <span class="column-title"
+                                          translate translate-attr-label="LISTING.HEADER_TITLE">
+                                          Título</span>
+                                </div>
+                            </th>                            
+                            <th>
+                                <div class="table-header">
+                                    <span class="column-title"
+                                    translate translate-attr-label="LISTING.HEADER_DATE">
+                                    Fecha</span>
+                                </div>
+                            </th>
+
+                            <th>
+                                <div class="table-header">
+                                    <span class="column-title"
+                                    translate translate-attr-label="LISTING.HEADER_TYPE">
+                                    Modalidad</span>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="table-header">
+                                    <span class="column-title"
+                                    translate translate-attr-label="LISTING.HEADER_PROPERTY">
+                                    Propiedad</span>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="table-header">
+                                    <span class="column-title"
+                                    translate translate-attr-label="LISTING.HEADER_LOCATION">
+                                    Ubicación</span>
+                                </div>
+                            </th>                             
+                            <th>
+                                <div class="table-header">
+                                    <span class="column-title"
+                                    translate translate-attr-label="LISTING.HEADER_PRICE">
+                                    Precio</span>
+                                </div>
+                            </th>
+                           
+                            <th> </th>
+                            <th> </th>
+                            <th> </th>
+                           <th> </th>
+                           <th> </th>
+                           <th> </th>
+
+                        </tr>
+                    </thead>
+
+                    <tfoot>
+                        <tr>
+
+                        </tr>
+                    </tfoot>
+
+                    <tbody>
+
+                       <tr ng-repeat="list in ::vm.listing">
+                            <td class="">
+                                <md-checkbox id="checked" name="checked"  ng-checked="vm.exists(list, vm.selectedRows)"
+                                             ng-click="vm.toggleSelectRow(list, $event)"
+                                             aria-label="{{vm.exists(list, vm.selectedRows) ? 'Deselect' : 'Select'}}">
+                                </md-checkbox>
+
+                            </td>    
+
+                            <td class="">
+                                <img class="product-image" ng-if="list.imageUrl" alt="{{list.title}}"
+                                     ng-src="{{list.imageUrl}}"/>                                     
+                            </td>    
+
+                            <td class="name">{{list.sourceKey}}</td>
+                            <td class="position">{{list.title | limitTo:14}}</td>
+                            <td class="office">{{list.pubDate | date: 'dd/MMM/yyyy'}}</td>
+                            <td class="age text-right">{{ list.modality }}</td>
+                            <td class="start-date text-right">{{list.propertySubType}}</td>
+                            <td class="age text-right">{{ list.countyName }}</td>                            
+                            <td class="salary text-right">{{ list.localPrice | currency: "₡" : 0 }}</td>
+
+                            <td>
+                                <md-button class="md-icon-button" ng-click="vm.deleteSelectedListing($event)"
+                                           aria-label="delete selected" translate translate-attr-label="LISTING.EDIT_SELECTED">
+                                    <md-icon md-font-icon="icon-pencil"></md-icon>
+                                    <md-tooltip><span translate="LISTING.EDIT_SELECTED">Edit</span></md-tooltip>    
+
+                                </md-button>                                
+                            </td>
+                            <td>
+                                 <md-button class="md-icon-button" ng-click="vm.deleteSelectedListing($event)"
+                                           aria-label="delete selected" translate translate-attr-label="LISTING.SHOW_SELECTED">
+                                    <md-icon md-font-icon="icon-eye"></md-icon>
+                                    <md-tooltip><span translate="LISTING.SHOW_SELECTED">Ver</span></md-tooltip>    
+
+                                </md-button>                               
+                            </td>
+                            <td>
+                                 <md-button class="md-icon-button" 
+                                     ng-if="list.status === 'active'"
+                                     ng-click="vm.toggleState(list)"
+                                     aria-label="delete selected" translate translate-attr-label="LISTING.PAUSE_SELECTED">
+                                    <md-icon md-font-icon="icon-pause-circle-outline"></md-icon>
+                                    <md-tooltip><span translate="LISTING.PAUSE_SELECTED">Pausar</span></md-tooltip>    
+                                </md-button>
+                                 <md-button class="md-icon-button" 
+                                     ng-if="list.status === 'pause'"
+                                     ng-click="vm.toggleState(list)"
+                                     aria-label="delete selected" translate translate-attr-label="LISTING.ACTIVATE_SELECTED">
+                                    <md-icon md-font-icon="icon-play-circle-outline"></md-icon>
+                                    <md-tooltip><span translate="LISTING.ACTIVATE_SELECTED">Activar</span></md-tooltip>    
+                                </md-button>                                                                
+                            </td>
+                            <td>
+                                <md-button class="md-icon-button" ng-click="vm.deleteSelectedListing($event)"
+                                           aria-label="delete selected" translate translate-attr-label="LISTING.SOLD_SELECTED">
+                                    <md-icon md-font-icon="icon-check-bookmark"></md-icon>
+                                      <md-tooltip><span translate="LISTING.SOLD_SELECTED">Edit File</span></md-tooltip>    
+
+                                </md-button>                                
+                            </td>
+                            <td>
+                                <md-button class="md-icon-button" ng-click="vm.gotoRowDetail(list.id)"
+                                           aria-label="delete selected" translate translate-attr-label="LISTING.DELETE_SELECTED">
+                                    <md-icon md-font-icon="icon-delete"></md-icon>
+                                    <md-tooltip><span translate="LISTING.DELETE_SELECTED">Edit File</span></md-tooltip>    
+
+                                </md-button>                             
+
+                            </td>
+  
+
+                            <td>
+                                <md-menu>
+                                    <md-button class="md-icon-button" aria-label="More" translate
+                                               translate-attr-aria-label="LISTING.MORE">
+                                        <md-icon md-font-icon="icon-dots-vertical" ng-click="$mdOpenMenu($event)"></md-icon>
+                                    </md-button>
+
+                                    <md-menu-content width="3">
+                                        <md-menu-item>
+                                            <md-button ng-click="vm.deleteContactConfirm(contact, ev)"
+                                                       translate="LISTING.SHARE_FACEBOOK">
+                                                Compartir en Facebook
+                                            </md-button>
+                                        </md-menu-item>
+
+                                        <md-menu-item>
+                                            <md-button ng-click="vm.deleteContactConfirm(contact, ev)"
+                                                       translate="LISTING.SHARE_TWITTER">
+                                                Compartir en Twitter
+                                            </md-button>
+                                        </md-menu-item>
+
+                                        <md-menu-item>
+                                            <md-button ng-click="vm.deleteContactConfirm(contact, ev)"
+                                                       translate="LISTING.SHARE_EMAIL">
+                                                Compartir por Correo
+                                            </md-button>
+                                        </md-menu-item>                                        
+
+                                    </md-menu-content>
+                                </md-menu>                            
+
+                            </td>                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <!-- / MAIN -->
+
+
+
+    </div>
+    <!-- / CONTENT -->
+
+    <!-- ADD LIST BUTTON -->
+    <md-button class="md-fab md-accent md-icon-button" id="add-list-button" ng-click="vm.openListDialog($event)"
+               aria-label="add list" translate translate-attr-aria-label="LISTING.ADD_CONTACT">
+        <md-icon md-font-icon="icon-plus"></md-icon>
+    </md-button>
+    <!-- / ADD LIST BUTTON -->
+
+</div>
+

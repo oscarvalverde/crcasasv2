@@ -1,0 +1,15 @@
+{
+    "FORGOTPASSWORD": {
+        "TITLE": "Recuperar el password",
+        "DESCRIPTION": "Por favor suministre la dirección de correo que utilizó, cuando creo su cuenta en crCasas. Le enviaremos un correo que le permitirá restablecer su password. ",
+        "EMAIL_ADRESS": "Correo electrónico (Email)",
+        "SEND_RESET_LINK": "ENVIAR CORREO",
+        "GO_BACK": "Regresar a Login",
+        "SUCCESS": "Un correo con instrucciones para restablecer su password será enviado a su dirección de correo, si la cuenta existe en nuestro sistema.",                
+        "FAILURE": "Sucedió algo inesperado. Por favor intente más tarde o solicite ayuda a admin@crcasas.com",                
+        "ERRORS": {
+            "EMAIL_REQUIRED": "El campo de correo es requerido",
+            "EMAIL_MUST_VALID": "El correo debe ser una dirección de correo válida"
+        }
+    }
+}

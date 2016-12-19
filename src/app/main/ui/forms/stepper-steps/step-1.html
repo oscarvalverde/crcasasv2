@@ -1,0 +1,184 @@
+<div class="md-inline-form">
+
+    <h3>Información de contacto</h3>
+ 
+    <div layout="column"  layout-gt-xs="row" flex>
+
+        <!-- nombre -->
+        <md-input-container flex="100" flex-gt-xs="50">        
+            <input type="text" name="firstname" ng-model="vm.contacts[1].name"
+                   placeholder="Nombre"
+                   class="read-only"
+                   ng-disabled="true"
+                   required>
+            <div ng-messages="step1.firstname.$error"
+                 ng-show="step1.firstname.$touched"
+                 role="alert">
+                <div ng-message="required">
+                    <span>El nombre es un campo requerido.</span>
+                </div>
+            </div>
+        </md-input-container>
+
+        <!-- apellidos -->
+        <md-input-container flex="100" flex-gt-xs="50">
+            <input type="text" name="lastname" ng-model="vm.contacts[1].lastName"
+                   placeholder="Apellidos"
+                   class="read-only"                   
+                   ng-disabled="true">
+            <div ng-messages="step1.lastname.$error"
+                 ng-show="step1.lastname.$touched"
+                 role="alert">
+                <div ng-message="required">
+                    <span>El apellido es un campo requerido.</span>
+                </div>
+            </div>
+        </md-input-container>
+
+
+
+    </div>
+
+    <!-- correo -->
+    <div layout="column" layout-gt-xs="row" flex>
+        <md-input-container flex="100" flex-gt-xs="50">
+            <md-icon md-svg-src="assets/angular-material-assets/img/icons/ic_email_24px.svg" class="email"></md-icon>        
+            <input type="email" name="email" ng-model="vm.contacts[1].email"
+                   placeholder="Correo"
+                   class="read-only"
+                   ng-disabled="true"
+                   required>
+            <div ng-messages="step1.email.$error"
+                 ng-show="step1.email.$touched"
+                 role="alert">
+                <div ng-message="email">
+                    <span>El correo no es válido.</span>
+                </div>
+                <div ng-message="required">
+                    <span>El correo es requerido.</span>
+                </div>
+            </div>
+        </md-input-container>
+
+        <!-- phone -->
+        <md-input-container flex="100" flex-gt-xs="50">
+            <md-icon md-svg-src="assets/angular-material-assets/img/icons/ic_phone_24px.svg" class="text"></md-icon>
+            <input type="text" name="phone" ng-model="vm.contacts[1].phone"
+                   placeholder="Teléfono">
+            <div ng-messages="step1.phone.$error"
+                 ng-show="step1.phone.$touched"
+                 role="alert">
+                <div ng-message="required">
+                    <span>El teléfono es requerido.</span>
+                </div>
+            </div>
+        </md-input-container>
+    </div>
+
+    <!-- Compania -->
+    <div layout="column" layout-gt-xs="row" flex>
+        <md-input-container flex="50" flex-gt-xs="50">        
+            <input type="text" name="company" ng-model="vm.contacts[1].company"
+                   placeholder="Compañía" >
+        </md-input-container>
+
+
+    </div>
+
+ 
+    <md-input-container>
+      <md-switch ng-model="vm.stepper.step1.other">¿Quiere usar otra información de contacto?</md-switch>
+    </md-input-container>
+
+    <div ng-show="vm.stepper.step1.other">
+
+        <p>El anuncio mostrará los campos siguientes como información de contacto</p>
+
+        <div layout="column" layout-gt-xs="row" flex>
+
+            <md-input-container flex="100" flex-gt-xs="50" > 
+                <input type="text" name="othername" ng-model="vm.stepper.step1.othername"
+                       placeholder="Otro nombre"
+                       >
+                <div ng-messages="step1.othername.$error"
+                     ng-show="step1.othername.$touched"
+                     role="alert">
+                    <div ng-message="required">
+                        <span>El nombre es un campo requerido.</span>
+                    </div>
+                </div>
+            </md-input-container>
+
+            <md-input-container flex="100" flex-gt-xs="50" >
+                <input type="text" name="otherlastname" ng-model="vm.stepper.step1.otherlastname"
+                       placeholder="Apellidos">
+                <div ng-messages="step1.otherlastname.$error"
+                     ng-show="step1.otherlastname.$touched"
+                     role="alert">
+                    <div ng-message="required">
+                        <span>El apellido es un campo requerido.</span>
+                    </div>
+                </div>
+            </md-input-container>
+        </div>
+
+        <div layout="column" layout-gt-xs="row" flex >
+            <md-input-container flex="100" flex-gt-xs="50">
+                <md-icon md-svg-src="assets/angular-material-assets/img/icons/ic_email_24px.svg" class="email"></md-icon>        
+                <input type="text" name="otheremail" ng-model="vm.stepper.step1.otheremail"
+                       minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/"
+                       placeholder="Otro correo"
+                       >
+                <div ng-messages="step1.otheremail.$error"
+                     ng-show="step1.otheremail.$touched"
+                     role="alert">
+                    <div ng-message="required">
+                        <span>El campo de correo es requerido.</span>
+                    </div>
+                      <div ng-message-exp="['minlength', 'maxlength', 'pattern']">
+                        El correo debe tener entre 10 y 100 caracteres y parecer una dirección de correo. 
+                      </div>
+
+                </div>
+            </md-input-container>
+
+            <md-input-container flex="100" flex-gt-xs="50">
+                <md-icon md-svg-src="assets/angular-material-assets/img/icons/ic_phone_24px.svg" class="email"></md-icon>
+                <input type="text" name="otherphone" ng-model="vm.stepper.step1.otherphone"
+                        placeholder="Otro teléfono">
+                <div ng-messages="step1.otherphone.$error"
+                     ng-show="step1.otherphone.$touched"
+                     role="alert">
+                    <div ng-message="required">
+                        <span>El campo apellidos es requerido.</span>
+                    </div>
+                </div>
+            </md-input-container>
+        </div>
+
+    </div>
+
+
+   <h3>Opciones de privacidad</h3>
+   <div layout="column"  layout-gt-xs="row" flex>
+        <md-input-container flex="100" flex-gt-xs="50">
+             <md-checkbox ng-model="vm.stepper.step1.showname">¿Mostrar su nombre?</md-checkbox>
+        </md-input-container>   
+        <md-input-container flex="100" flex-gt-xs="50">
+             <md-checkbox ng-model="vm.stepper.step1.showphone">¿Mostrar su número de telefono?</md-checkbox>
+        </md-input-container>
+    </div>
+
+   <div layout="column"  layout-gt-xs="row" flex>
+        <md-input-container flex="100" flex-gt-xs="50">
+             <md-checkbox ng-model="vm.stepper.step1.showemail">¿Mostrar su correo?</md-checkbox>
+        </md-input-container>   
+        <md-input-container flex="100" flex-gt-xs="50">
+             <md-checkbox ng-model="vm.stepper.step1.showcompany">¿Mostrar el nombre de su Compañía?</md-checkbox>
+        </md-input-container>   
+
+    </div>
+
+
+
+</div>
