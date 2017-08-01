@@ -1,0 +1,73 @@
+<md-dialog class="template-1" aria-label="Seleccione una foto">
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Seleccione la foto</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="closeDialog()">
+          <md-icon md-svg-src="assets/angular-material-assets/img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="Subir foto">
+          <md-content class="md-padding">
+                <div flow-init="vm.ngFlowOptions"
+                     flow-name="vm.ngFlow.flow"
+                     flow-drop>             
+
+                  <div class="drag-area" layout="column" layout-align="center center"
+                        flow-drop 
+                        flow-drag-enter="class='yellow-200-bg'" 
+                        flow-drag-leave="class='drag-area-leave'"
+                        ng-show="$flow.files <= 0"
+                        ng-class="class">
+                    <br>  
+                    <div layout="row" layout-align="center center">
+                      <md-icon class="s48" md-font-icon="icon-cursor-pointer" ></md-icon>                   
+                    </div>                       
+                    <div layout="row" layout-align="center center">
+                        <h1>Arrastre su foto de perfil</h1>
+                    </div>                      
+                    <div class="separator" layout="row" layout-align="center center">
+                        <div class="middle_separator" >- o -</div>
+                    </div> 
+                    <br>  
+                    <div layout="row" layout-align="center center">
+                      <md-button class="md-primary" flow-btn>Seleccione una foto de su computadora</md-button>
+                    </div>                         
+                  </div>
+
+                  <div ng-show="$flow.files[0]">
+                      <div layout="column">
+                           <small>Para recortar esta imagen, arrastre la región de abajo y luego haga clic en "establecer como foto de perfil".</small>        
+                      </div>
+                      <div class="image" layout="column">
+                          <img flow-img="$flow.files[0]" />                              
+                      </div>                     
+                  </div>
+
+
+                </div> 
+
+          </md-content>
+        </md-tab>
+        <md-tab label="Sus fotos">
+          <md-content class="md-padding">
+            <h1 class="md-display-2">Sus fotos</h1>
+          </md-content>
+        </md-tab>
+      </md-tabs>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <md-button class="md-button md-confirm-button md-default-theme md-ink-ripple" ng-click="dialog.abort()" >
+        Establecer como foto de perfil
+      </md-button>
+      <md-button class="md-button md-cancel-button md-default-theme md-ink-ripple" 
+                 ng-click="closeDialog()" >
+        Cancelar
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

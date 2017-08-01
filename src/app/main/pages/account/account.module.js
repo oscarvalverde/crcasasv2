@@ -38,11 +38,11 @@
         $translatePartialLoaderProvider.addPart('app/main/pages/account');
 
         // Navigation
-        msNavigationServiceProvider.saveItem('pages.account', {
+        msNavigationServiceProvider.saveItem('seller.account', {
             title : 'Perfil',
             icon  : 'icon-account-circle',
             state : 'app.pages_account',
-            weight: 2
+            weight: 1
         });
 
 

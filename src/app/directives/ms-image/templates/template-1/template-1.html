@@ -1,0 +1,44 @@
+<div class="template-1" >
+
+      <div class="image-wrapper">
+
+        <div class="dropzone" ms-drop-zone="[image/png, image/jpeg, image/gif]"
+                      file="blankImageUrl" file-name="imageFileName" data-max-file-size="10">
+            <md-button class="md-fab md-mini md-primary msdelete-button"
+                       aria-label="delete image">
+                <md-icon md-font-icon="icon-delete"></md-icon>
+            </md-button>
+            <!-- la imagen original --> 
+            <img id="my-image-id" class=""
+                 ng-src="{{blankImageUrl}}" 
+                 watermark
+                 image-center
+                 maxWidth='300'
+                 maxHeight='200'
+                 border="1">
+
+             <!-- simbolo de carga mientras la imagen se sube al browser en el caso de que sean pesadas --> 
+             <div class="" ng-hide="!imageLoading" >
+                <div class="progress" layout="row" layout-align="center center" >
+                  <md-progress-circular class="md-accent"
+                      ng-disabled="!userImageIsLoading"
+                      md-mode="indeterminate" md-diameter="196">
+                  </md-progress-circular>  
+                </div>                              
+             </div>
+                      
+        </div>      
+
+
+
+      </div>
+
+
+
+      <input id="upload"    name="upload" 
+                                      type="file"
+                                      class="ng-hide">    
+
+
+</div>
+

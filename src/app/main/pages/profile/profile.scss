@@ -4,8 +4,9 @@
         height: 240px;
         min-height: 240px;
         max-height: 240px;
-        background: url('/assets/images/backgrounds/march.jpg') no-repeat 0 45%;
-        background-size: 100% auto;
+        background: url('/assets/images/backgrounds/old_map_@2X.png') ;
+        background-repeat:repeat-x;
+
 
         .profile-image {
             margin-right: 24px;
@@ -13,7 +14,7 @@
 
         .name {
             font-size: 34px;
-            color: #FFFFFF;
+            color: black;
         }
 
         .actions {

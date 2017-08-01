@@ -1,7 +1,9 @@
 {
   "name": "fuse",
   "version": "1.4.0",
-  "dependencies": {},
+  "dependencies": {
+    "instantsearch.js": "^2.0.1"
+  },
   "scripts": {
     "test": "gulp test"
   },

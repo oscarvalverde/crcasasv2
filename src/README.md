@@ -66,3 +66,24 @@ You will get a 200 response with the following data:
     {
      "message": "echo"
     }
+
+## Create a branch
+
+1. Create the branch on your local machine and switch in this branch :
+   git checkout -b [name_of_your_new_branch]
+2. Push the branch on github :
+   git push origin [name_of_your_new_branch]
+   When you want to commit something in your branch, be sure to be in your branch.
+3. You can see all branches created by using :
+   git branch 
+
+## Sync to github master
+
+https://help.github.com/articles/syncing-a-fork/
+
+1. git fetch upstream
+2. git checkout master
+3. git merge upstream/master
+
+
+

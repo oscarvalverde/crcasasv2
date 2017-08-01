@@ -8,9 +8,12 @@
 
     /** @ngInject */
     function ToolbarController($rootScope, $q, $state, $timeout, 
+                               authService,  
                                $mdSidenav, $translate, $mdToast, msNavigationService)
     {
         var vm = this;
+
+        //console.log("ToolbarController init...");
 
         // Data
         $rootScope.global = {
@@ -112,7 +115,10 @@
         function logout()
         {
             // Do logout here..
-            $rootScope.auth.$signOut();
+            //$rootScope.auth.$signOut();
+            authService.firebaseAuthObject.$signOut();
+            $state.go('app.pages_auth_login-v2');
+
         }
 
         /**

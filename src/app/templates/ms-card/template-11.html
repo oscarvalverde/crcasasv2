@@ -1,0 +1,15 @@
+<div class="template-11">
+    <div class="image-wrapper">
+         <md-button class="md-fab md-mini md-primary control-button"
+                    ng-style="card.controlButtonStyle"
+                    ng-click="card.showTabDialog($event)"
+                    aria-label="delete image">
+            <md-icon md-font-icon="icon-camera"></md-icon>
+        </md-button>
+        <img class="image"  ng-src="{{card.image.src}}"
+                            imageonload 
+                            cbfunction="card.getImageDimension(width, height)"                            
+                            alt="{{card.image.alt}}"
+             ng-show="card.image">       
+    </div>
+</div

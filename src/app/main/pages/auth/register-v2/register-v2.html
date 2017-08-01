@@ -1,7 +1,7 @@
 <div id="register-v2" layout="row" layout-align="start">
     <div id="register-v2-intro" flex hide show-gt-sm>
-        <div class="logo md-accent-bg">
-            <span><img src="assets/images/logos/crcasas-trans.png" height="75%" width="75%" align="middle" style="margin:10px "></span>
+        <div class="logo ">
+            <span><img src="assets/images/logos/logocr.png" height="75%" width="75%" align="middle" style="margin:10px "></span>
         </div>
         <div class="title" translate="REGISTER_V2.INTRO_TITLE">
             Welcome to the FUSE!
@@ -9,7 +9,7 @@
         <div class="description" translate="REGISTER_V2.INTRO_DESCRIPTION">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ullamcorper nisl erat,
             vel convallis elit fermentum pellentesque. Sed mollis velit facilisis facilisis viverra.
-        </div>
+        </div>        
     </div>
 
     <div id="register-v2-form-wrapper" class="flex-scrollable md-whiteframe-8dp" layout="column" flex ms-scroll>
@@ -19,10 +19,41 @@
             </div>
 
             <div class="title" translate="REGISTER_V2.TITLE">Create an account</div>
-            <div class="description" translate="REGISTER_V2.DESCRIPTION">Sed mollis velit facilisis facilisis viverra
+            <br>          
+            <div layout="column" layout-align="start center">
+                <md-button class="md-raised google"
+                            ng-click="vm.loginWithGoogle()">
+                    <div layout="row" layout-align="center center">
+                        <span>
+                            <md-icon md-font-icon="icon-google-plus" class="s16"></md-icon>
+                            <span translate="LOGIN_V2.SIGN_UP_WITH_GOOGLE">Sign up with Google Account</span>
+                        </span>
+                    </div>
+                </md-button>
+
+                <md-button  class="md-raised facebook"
+                            ng-click="vm.loginWithFacebook()">
+                    <div layout="row" layout-align="center center">
+                        <span>
+                            <md-icon md-font-icon="icon-facebook" class="s16"></md-icon>
+                            <span translate="LOGIN_V2.SIGN_UP_WITH_FACEBOOK">Sign up with Facebook Account</span>
+                        </span>
+                    </div>
+                </md-button>
+            </div>
+
+            <div ng-show="vm.accountExists" layout="row" layout-sm="column" layout-align="center center">
+                <span class="error-message" translate="LOGIN_V2.AUTH_ERRORS.ACCOUNT_EXISTS">
+                       Ya existe una cuenta en crCasas con ese correo electrónico</span>
+            </div> 
+
+            <div class="separator" layout="row" layout-align="center center">
+                <div class="middle_separator"  translate="LOGIN_V2.OR">OR</div>
             </div>
 
             <form name="registerForm" novalidate>
+                <div class="description" translate="REGISTER_V2.DESCRIPTION">Create an account</div>
+
                 <md-input-container class="md-block" md-no-float>
                     <input type="email" name="email" ng-model="vm.registerForm.email" placeholder="Email"
                            translate translate-attr-placeholder="REGISTER_V2.EMAIL"
@@ -68,6 +99,7 @@
                     <md-checkbox name="terms" ng-model="data.cb1" aria-label="I read and accept" required></md-checkbox>
                     <div layout="row" layout-sm="column" layout-align="start center">
                         <span translate="REGISTER_V2.READ_ACCEPT">I read and accept</span>
+                        &nbsp;
                         <a href="#" class="md-accent-color"
                            ng-click="vm.showTerms($event)"  
                            translate="REGISTER_V2.TERMS_COND">terms and conditions</a>
@@ -85,41 +117,18 @@
 
                 </div>
                 <div ng-show="vm.alreadyUsed" layout="row" layout-sm="column" layout-align="center center">
-                    <span class="error" >
-                           Ya existe una cuenta en crCasas con ese correo electrónico</span>
+                    <span class="error-message" >
+                           Ya existe una cuenta en crCasas con ese correo electrónico. Ingrese con esa cuenta o registrese con otra cuenta de correo.</span>
                 </div>  
 
 
             </form>
 
-            <div class="separator">
-                <span class="text" translate="LOGIN_V2.OR">OR</span>
+            <div class="separator" layout="row" layout-align="center center">
             </div>
-
-            <div layout="column" layout-align="start center">
-                <md-button class="md-raised google"
-                            ng-click="vm.loginWithGoogle()">
-                    <div layout="row" layout-align="center center">
-                        <span>
-                            <md-icon md-font-icon="icon-google-plus" class="s16"></md-icon>
-                            <span translate="LOGIN_V2.WITH_GOOGLE">Log in with Google</span>
-                        </span>
-                    </div>
-                </md-button>
-
-                <md-button  class="md-raised facebook"
-                            ng-click="vm.loginWithFacebook()">
-                    <div layout="row" layout-align="center center">
-                        <span>
-                            <md-icon md-font-icon="icon-facebook" class="s16"></md-icon>
-                            <span translate="LOGIN_V2.WITH_FACEBOOK">Log in with Facebook</span>
-                        </span>
-                    </div>
-                </md-button>
-            </div>            
-
             <div class="login" layout="row" layout-sm="column" layout-align="center center">
                 <span class="text" translate="REGISTER_V2.ALREADY_HAVE">Already have an account?</span>
+                &nbsp;
                 <a class="link" ui-sref="app.pages_auth_login-v2" translate="REGISTER_V2.LOGIN">Log in</a>
             </div>
         </div>

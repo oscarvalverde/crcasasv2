@@ -2,26 +2,19 @@
 {
     'use strict';
 
+    // estoy usando esta libreria para acceder el endpoint 
+    // https://github.com/maximepvrt/angular-google-gapi
+
     angular
         .module('fuse')
         .run(runBlock)
-        .run(runProtect)
-        .run(['GApi', 'GAuth',
-            function(GApi, GAuth) {
-                var BASE = 'https://crcasaslogin.appspot.com/_ah/api';
-                var CLIENT = 'AIzaSyATIYkf4kco6Hy5eCYAiyfcQnzpm1tLBzc';
-
-                GApi.load('echo', 'v4', BASE).then(function(resp) {
-                    console.log('api: ' + resp.api + ', version: ' + resp.version + ' loaded');
-                }, function(resp) {
-                    console.log('an error occured during loading api: ' + resp.api + ', resp.version: ' + version);
-                });
-            }
-        ]);
-
+        .run(runGapiBlock)
+        .run(runProtect);
     /** @ngInject */
     function runBlock($rootScope, $timeout, $state)
     {
+
+         console.log('runblock...');
         // Activate loading indicator
         var stateChangeStartEvent = $rootScope.$on('$stateChangeStart', function ()
         {
@@ -56,17 +49,28 @@
 
     /** @ngInject */
     function runProtect($rootScope, $state) {
-      $rootScope.$on("$stateChangeError", function(event, toState, toParams, fromState, fromParams, error) {
-        // We can catch the error thrown when the $requireSignIn promise is rejected
-        // and redirect the user back to the home page
 
-        if (error === "AUTH_REQUIRED") {
-          $state.go("app.pages_auth_login-v2");
-        }
+      console.log('runprotect...');
+      $rootScope.$on("$stateChangeError", function(event, toState, toParams, fromState, fromParams, error) {
+         // We can catch the error thrown when the $requireSignIn promise is rejected
+         // and redirect the user back to the home page
+
+         if (error === "AUTH_REQUIRED") { 
+           $state.go("app.pages_auth_login-v2",{toState: toState.name});
+         }
       });
     };
 
+    /** @ngInject */
+    function runGapiBlock(GApi, GAuth, $window) {
+        // var BASE = 'https://crcasaslogin.appspot.com/_ah/api';
 
+        // GApi.load('people', 'v1', BASE).then(function(resp) {
+        //     console.log('api: ' + resp.api + ', version: ' + resp.version + ' loaded');
 
+        // }, function(resp) {
+        //     console.log('an error occured during loading api: ' + resp.api + ', resp.version: ' + version);
+        // });
+    };    
 
 })();

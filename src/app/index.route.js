@@ -9,9 +9,11 @@
     /** @ngInject */
     function routeConfig($stateProvider, $urlRouterProvider, $locationProvider)
     {
+        
+        console.log('init routeConfig');
         $locationProvider.html5Mode(true);
 
-        $urlRouterProvider.otherwise('/pages/profile');
+        $urlRouterProvider.otherwise('/pages/auth/login-v2');
 
         /**
          * Layout Style Switcher
@@ -42,7 +44,7 @@
                 toolbar   : 'app/toolbar/layouts/vertical-navigation/toolbar.html',
                 navigation: 'app/navigation/layouts/vertical-navigation/navigation.html'
             },
-            verticalNavigationFullwidthToolbar  : {
+            verticalNvigationFullwidthToolbar  : {
                 main      : 'app/core/layouts/vertical-navigation-fullwidth-toolbar.html',
                 toolbar   : 'app/toolbar/layouts/vertical-navigation-fullwidth-toolbar/toolbar.html',
                 navigation: 'app/navigation/layouts/vertical-navigation/navigation.html'

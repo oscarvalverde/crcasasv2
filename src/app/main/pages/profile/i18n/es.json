@@ -1,9 +1,9 @@
 {
     "PROFILE": {
-        "FOLLOW": "Follow",
-        "SEND_MESSAGE": "Send Message",
-        "TIMELINE": "Timeline",
-        "ABOUT": "About",
+        "FOLLOW": "CREAR NUEVO ANUNCIO",
+        "SEND_MESSAGE": "VER MIS ANUNCIOS",
+        "TIMELINE": "Contacto",
+        "ABOUT": "Privacidad",
         "PHOTOS_VIDEOS": "Photos & Videos",
         "WRITE_SOMETHING": "Write something..",
         "INSERT_PHOTO": "insert photo",
@@ -38,6 +38,16 @@
         "EMAILS": "Emails",
         "FRIENDS": "Friends",
         "SEE": "See",
-        "JOINED_GROUPS": "Joined Groups"
+        "JOINED_GROUPS": "Joined Groups",
+        "CONTACT_FIRST_NAME": "Nombre",        
+        "CONTACT_LAST_NAME": "Apellidos",  
+        "CONTACT_EMAIL": "Email",  
+        "CONTACT_PHONE": "Teléfono", 
+        "CONTACT_MOBILE": "Celular",           
+        "CONTACT_COMPANY": "Organización",  
+        "OTHER_CONTACT": "¿Mostrar otra información de contacto en el anuncio?",
+        "OTHER_NAME": "Nombre", 
+        "OTHER_EMAIL": "Email", 
+        "OTHER_PHONE": "Teléfono"                   
     }
 }

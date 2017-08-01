@@ -1,0 +1,25 @@
+    <md-menu-item class="md-indent" ui-sref="app.pages_profile">
+        <md-icon md-font-icon="icon-account" class="icon"></md-icon>
+        <md-button>Mi Cuenta</md-button>
+    </md-menu-item>
+
+    <md-menu-item class="md-indent" ui-sref="app.mail">
+        <md-icon md-font-icon="icon-email" class="icon"></md-icon>
+        <md-button>Notificaciones
+            <span class="badge white-fg ng-binding ng-scope" ng-style="{'background': node.badge.color}" ng-if="node.badge" style="background: rgb(9, 210, 97);">13</span>        
+        </md-button>
+    </md-menu-item>
+
+    <md-menu-item class="md-indent" ui-sref="app.mail">
+        <md-icon md-font-icon="icon-email" class="icon"></md-icon>
+        <md-button>Mis Anuncios</md-button>
+    </md-menu-item>
+
+
+    <md-menu-divider></md-menu-divider>
+
+    <md-menu-item class="md-indent">
+        <md-icon md-font-icon="icon-logout" class="icon"></md-icon>
+        <md-button ng-click="vm.logout()">Salir</md-button>
+    </md-menu-item>
+

@@ -1,0 +1,21 @@
+ms-image {
+
+    .template-1 {
+
+        .image-wrapper {
+            position: relative;
+            .msdelete-button {
+                position: absolute;
+                top: 2px;
+                right: 4px;
+                opacity: 0.5;                                
+                z-index: 100; 
+                    md-icon {
+                       opacity: 1;                                                                        
+                    }                                                                 
+            }                                                                       
+        }  
+
+    }
+
+}

@@ -1,0 +1,101 @@
+<md-card ng-class="MsListingItem.listing.color">
+
+    <!-- NOTE IMAGE -->
+    <img ng-if="MsListingItem.listing.image" class="md-card-image" ng-src="{{MsListingItem.listing.image}}">
+    <!-- / NOTE IMAGE -->
+
+    <md-card-content>
+
+        <!-- NOTE TITLE -->
+        <md-card-title ng-if="MsListingItem.listing.title">
+            <md-card-title-text>
+                {{MsListingItem.listing.title | cut:true:60:' ...'}}
+            </md-card-title-text>
+        </md-card-title>
+        <!-- / NOTE TITLE -->
+
+        <!-- NOTE DESCRIPTION -->
+        <md-description>
+            <span ng-if="$root.localCurrency && MsListingItem.listing.sale">
+                {{ (MsListingItem.listing.ocalCurrency) && (MsListingItem.listing.localPrice  | currency:"&#8353;":0) || (MsListingItem.listing.dolPrice * vm.exchRate  | currency:"&#8353;":0)}}
+            </span>        
+            <span ng-if="!$root.localCurrency && MsListingItem.listing.sale">
+                {{ (MsListingItem.listing.localCurrency) && (MsListingItem.listing.localPrice / vm.exchRate  | currency:"USD$":0) || (MsListingItem.listing.dolPrice  | currency:"USD$":0)}}
+            </span>
+
+            <span ng-if="$root.localCurrency && MsListingItem.listing.rent">
+                {{ (MsListingItem.listing.localCurrency) && (MsListingItem.listing.localRentPrice  | currency:"&#8353;":0) || (MsListingItem.listing.dolRentPrice * vm.exchRate  | currency:"&#8353;":0)}}
+            </span>
+            <span ng-if="!$root.localCurrency && MsListingItem.listing.rent">
+                {{ (MsListingItem.listing.localCurrency) && (MsListingItem.listing.localRentPrice / vm.exchRate  | currency:"USD$":0) || (card.dolRentPrice  | currency:"USD$":0)}}
+            </span>
+
+        </md-description>
+        <!-- / NOTE DESCRIPTION -->
+
+        <!-- NOTE PRICE -->
+
+        <!-- / NOTE PRICE -->       
+
+        <!-- NOTE CHECKLIST -->
+        <div class="checklist">
+
+
+  <md-fab-toolbar md-open="false" 
+                  md-direction="right">
+    <md-fab-trigger class="align-with-text">
+      <md-button aria-label="menu" class="md-icon-button md-primary">
+        <md-icon md-svg-src="assets/angular-material-assets/img/icons/menu.svg"></md-icon>
+      </md-button>
+    </md-fab-trigger>
+    <md-toolbar>
+      <md-fab-actions class="md-toolbar-tools">
+
+        <md-button aria-label="comment" class="md-icon-button">
+          <md-icon 
+               socialshare
+               socialshare-provider="facebook"
+               socialshare-text="720kb AngularJS Socialshare"
+               socialshare-hashtags="angularjs, angular-socialshare"
+               socialshare-url="http://720kb.net"
+                md-svg-src="assets/angular-material-assets/img/icons/ic_comment_24px.svg"></md-icon>
+        </md-button>
+        <md-button aria-label="label" class="md-icon-button">
+          <md-icon md-svg-src="assets/angular-material-assets/img/icons/ic_label_24px.svg"></md-icon>
+        </md-button>
+        <md-button aria-label="photo" class="md-icon-button">
+          <md-icon md-svg-src="assets/angular-material-assets/img/icons/ic_photo_24px.svg"></md-icon>
+        </md-button>
+      </md-fab-actions>
+    </md-toolbar>
+  </md-fab-toolbar>
+
+
+
+
+
+        </div>
+        <!-- / NOTE CHECKLIST -->
+
+        <!-- NOTE LABELS -->
+        <div class="labels" ng-if="MsListingItem.listing.labels.length > 0" layout="row" layout-wrap layout-align="end start">
+            <div class="label" ng-repeat="labelId in MsListingItem.listing.labels"
+                 ng-click="$event.preventDefault();$event.stopPropagation();vm.filterChange(vm.labels.getById(labelId))"
+                 ng-class="vm.labels.getById(labelId).color">
+                {{vm.labels.getById(labelId).name}}
+            </div>
+        </div>
+        <!-- / NOTE LABELS -->
+
+        <!-- NOTE REMINDER -->
+        <div ng-if="vm.listingListType ==='reminders' && MsListingItem.listing.reminder" class="reminder secondary-text text-right">
+            <md-icon md-font-icon="icon-bell" class="s16 mr-8"></md-icon>
+            <span>
+                {{MsListingItem.listing.reminder | altDate}}
+            </span>
+        </div>
+        <!-- / NOTE REMINDER -->
+
+    </md-card-content>
+
+</md-card>

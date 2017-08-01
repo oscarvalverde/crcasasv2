@@ -1,0 +1,85 @@
+Todos específicas:
+  @started(16-12-19 11:25)
+  recordar que los todos los estoy manejando en backend, aca solo los específicos del front
+  el todo del backend maneja todos los todos
+  ✔ Tengo un 404 con photoUrl @done (17-01-08 10:54)
+     creo que es que cuando no esta autenticado, esa variable es null
+
+  ✔ Hay un uncaught error en gapi.loaded @done (16-12-19 15:54)
+  el objeto describe el error como:  ss
+    com.google.common.util.concurrent.ExecutionError: java.lang.NoSuchMethodError: com.google.common.reflect.TypeToken.isSupertypeOf(Ljava/lang/reflect/Type;)
+    creo que tiene que ver con el llamado al endpoint y que la versión varió o que ahora se autentica
+    AHHH... ES EN EL BACKEND
+    PARECE SER QUE ES UN CONFLICTO DE CLASES
+    con este comando reviso conflictos de dependencias: s
+    mvn dependency:tree -Dverbose
+    EUREKA: api: echo, version: v5 loaded
+    actualizé las versiones en POM y el conflicto se resolvió!!! 
+  ✔ Sending ID Tokens to the backend @started(16-12-19 16:37) @done (17-01-08 10:54) @lasted(19 days, 18:17)
+    voy a probar con curl enviarlo primero y después lo codifico: en windows 10
+    curl -X GET -H "USER_TOKEN_HEADER: 12132213" -H "Content-type: application/json" "https://crcasaslogin.appspot.com/_ah/api/echo/v5/message?message=hola"
+    sin embargo me da el siguiente error
+    401 method doesnt allow callers without established identity
+
+  ✔ Resolver el problema del conflicto @done (16-12-22 08:50)
+    (parece ser que no se corrigió anteriormente, solo que ahora el error no lo detecta el front pero si lo registra el back)
+    el problema esta descrito en el siguiente link
+    https://github.com/google/google-api-java-client/issues/903
+
+    Agregué esto al POM y el error cambió
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>19.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.firebase</groupId>
+            <artifactId>firebase-admin</artifactId>
+            <version>4.0.3</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava-jdk5</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+    Ahora el error es: a
+      IllegalArgumentException: Can't add a primitive type as a resource
+      com.google.api.server.spi.config.model.SchemaRepository.getOrCreateTypeForConfig (SchemaRepository.java:128)
+      voy a actualizar las librerias a las ultimas versiones que recomienda el maven
+
+      mvn dependency:tree -Dverbose -Dincludes=com.google.guava
+      SOLUCIONADO. COMO? INSTALE EL BACKEND ORIGINAL. EN EL FRONT INSTALE EL LIBRARI ORIGINAL.
+      CORREGI EL BACKEND ORIGINAL PARA QUE EL METODO TUVIERA UN NOMBRE DIFERENTE A LA CLASE.
+      DESPUES AGREGUE 
+
+
+  ✔ Recibing ID tokens in the backend @done (17-01-08 10:54)  
+
+Estoy probando el backend desde el source original:
+  ✔ Llamar al backend @started(16-12-21 09:21) @done (16-12-21 15:33) @lasted(6:12)
+  ✔ Enviarle el firebase token del front al backend @started(16-12-21 15:34) @done (17-01-08 10:54) @lasted(17 days, 19:20)
+    ✔ antes necesito guardar en el backend en sql cuando es success o no sucess @started(16-12-22 09:13) @done (17-01-08 10:54) @lasted(17 days, 1:41)
+Trabajos en el front:
+  ☐ Modificar el submenu del login con @started(17-01-08 10:55)
+  my cuenta, mis anuncios, notificaciones, eliminar el online, Salir
+  ☐ Modificar el left bar, dejar solo: home, mi cuenta, mis anuncios, notificaciones, contactos, tareas,fotos
+
+Retomando los trabajos en el front:  @started(17-07-10 23:23)
+   ☐ Quick road map to redemption? 
+     1. poner un anuncio fácilmente
+     2. pantalla principal muestra las propiedades y usa algolia para el search
+     3. pantalla que muestra anuncios, estilo lo que ya tengo en wp
+     3. account lista los anuncios, y permite borrarlos o modificarlos
+   ☐ Crear una pantalla para que se ingrese fácilmente un anuncio @started(17-07-10 23:30)
+     casos de uso a. usuario nuevo no registrado, entonces 
+                  b. usuario ya registrado, entonces al final poner la opción de login
+                     b.1 el email es el mismo que el registrado
+                     b.2 el email es diferente
+
+                     ☐ Quitar el left sidebar
+                     
+   ☐ pantalla principal que muestra las propiedades y permite buscar con algolia 
+   ☐ pantalla que muestra un anuncio
+   ☐ account management

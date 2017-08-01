@@ -1,0 +1,28 @@
+
+.template-1 {	
+	position: relative;
+	width: 800px;
+	
+	.footer {
+	  width: 100%;
+	  text-align: center;
+	   }
+	.footer > code {
+	  font-size: 0.8em;
+	  }
+	.drag-area {
+		background-color: rgb(224,224,224);
+	}	
+	.drag-area-enter {
+		background-color: rgb(128,216,255);
+	}	
+
+	.drag-area-leave {
+		background-color: rgb(224,224,224);
+	}	
+
+		  			
+}
+
+
+

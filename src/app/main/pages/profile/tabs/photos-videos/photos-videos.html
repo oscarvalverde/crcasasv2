@@ -1,15 +1,99 @@
-<div class="photos-videos">
-    <div class="period" data-ng-repeat="period in vm.photosVideos">
+<!-- 
+foto de perfil: incluir, borrar, cambiar
+watermark: incluir, borrar, cambiar
+image de facebook page: incluir, borrar, cambiar
+logo: incluir, borrar, cambiar
+
+materiales
+=========
+
+1. le doy un url y un ancho alto maximo y me despliega la foto. 
+muestra un boton que dispara otro material que es un dialogo para cambiar la foto.
+
+2. material que muestra un dialogo para subir una foto y hacerle crop, rotarla. cuando el usuario da OK el material pasa el url de la foto a un servicio que actualiza la nueva foto en el servidor.
+el material toma como insumo las medidas y tamano requerido por la foto.
+si el usuario no es subscriptor y la foto es mayor de 2 mb el material no permite subir la foto.
+si el usuario es subscriptor el material resize las fotos que sean mayores a 2 mb. 
+
+( ese material se puede ampliar para que en otros views permite aplicar un watermark de crcasas o del usuario)
+
+ -->
+
+<div class="photos-videos" ng-controller="PhotosVideosController as vm">
+ 
+    <div class="period" >
         <div class="period-title">
-            <span class="name">{{period.name}}</span>
-            <span class="info">{{period.info}}</span>
+            <span class="name">Foto de perfil</span>
+            <span class="info">participante</span>
         </div>
 
         <div class="period-media" layout="row" layout-wrap>
-            <div class="media" ng-repeat="media in period.media">
-                <img class="preview" ng-src="{{media.preview}}" title="{{media.title}}">
-                <div class="title">{{media.title}}</div>
+            <div class="media image-upload" >
+
+                <!-- http://foliotek.github.io/Croppie#documentation -->
+                <!-- creo que me quedare con este:  
+                https://github.com/bcabanes/angular-image-cropper 
+                https://github.com/bcabanes/angular-image-cropper/issues/27-->
+
+                <img class="preview" ng-show="!profile.valid && !profile.isUploading"
+                           ng-src="/assets/images/avatars/profile.jpg" ng-show="!profile.valid">
+                <img id="profilecanvas" class="preview" 
+                           ng-show="profile.valid && profile.isComplete"
+                           ng-src={{profile.data}} >
+
+                <input id="fileInput" name="profile"  
+                                      type="file" fb-image-upload 
+                                      class="ng-hide fb-image-upload">  
+                <md-button class="md-fab md-mini edit-image-button"
+                           ng-show="!profile.isUploading"
+                           ng-click="vm.croppieThis('#profilecanvas', 'preview')"
+                           aria-label="delete image">
+                    <md-icon md-font-icon="icon-pencil"></md-icon>
+                </md-button>                                                      
+                <md-button class="md-fab md-mini load-image-button"
+                           ng-show="!profile.isUploading"
+                           ng-click="vm.fileUpload('#fileInput')"
+                           aria-label="delete image">
+                    <md-icon md-font-icon="icon-file-image-box"></md-icon>
+                </md-button>
+               <div class="loading" ng-show="profile.isUploading" >
+                  <div class="progress" layout="row" layout-align="center center" >
+                    <md-progress-circular class="md-accent"
+                        ng-disabled="!vm.activated"
+                        md-mode="indeterminate" md-diameter="256">
+                    </md-progress-circular>  
+                  </div>                              
+               </div>  
+               <!-- <div class="profileimg" ng-show="showcroppie" ></div> -->
+
             </div>
+
         </div>
+ 
+
+    <span>oscar</span>
+    <ms-card template="'app/templates/ms-card/template-11.html'" ng-model="vm.cardModel">
+      
+    </ms-card>
+
+    <div class="period" >
+        <div class="period-title">
+            <span class="name">Water</span>
+            <span class="info">mark</span>
+        </div>
+
+
+        <div class="period-media" layout="row" layout-wrap>
+            <div class="media" >
+
+
+
+            </div>
+            
+        </div>
+
     </div>
+
+
+
 </div>

@@ -19,41 +19,43 @@
 
             // Quick panel
             'app.quick-panel',
-
             // Apps
-            'app.dashboards',
-            'app.calendar',
-            'app.e-commerce',
-            'app.mail',
-            'app.chat',
-            'app.file-manager',
-            'app.scrumboard',
-            'app.gantt-chart',
-            'app.todo',
+            // 'app.dashboards',
+            // 'app.calendar',
+            // 'app.e-commerce',
+            // 'app.mail',
+            // 'app.chat',
+            // 'app.file-manager',
+            // 'app.scrumboard',
+            // 'app.gantt-chart',
+            'app.search-v2',
             'app.contacts',
             'app.listing',
-            'app.notes',
+            // 'app.notes',
 
-            'app.gallery',
+            // 'app.gallery',
 
             // Pages
             'app.pages',
 
             // User Interface
-            'app.ui',
+            // 'app.ui',
 
             // Components
-            'app.components',
+            // 'app.components',
 
             'ngDragDrop',
 
             "firebase",
 
 
-            'ngPassword'
+            'ngPassword',
 
-            //'angular-google-gapi'
+            'angular-google-gapi',
 
+            'imageCropper',
+
+            '720kb.socialshare'
 
         ]);
 })();

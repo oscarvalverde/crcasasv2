@@ -1,0 +1,31 @@
+<div class="search-template-1">
+    <div class="media">
+        <img class="image" ng-src="{{card.image + '=s1200'}}" alt="{{card.media.image.alt}}" ng-show="card.image">
+    </div>
+    <span></span>
+    <div class="content pv-24 ph-16">
+        <div class="title h1" ng-if="card.title">
+            {{card.title}}
+        </div>
+        <div class="subtitle secondary-text" ng-if="$root.localCurrency && card.sale">
+            {{ (card.localCurrency) && (card.localPrice  | currency:"&#8353;":0) || (card.dolPrice * vm.exchRate  | currency:"&#8353;":0)}}
+        </div>        
+        <div class="subtitle secondary-text" ng-if="!$root.localCurrency && card.sale">
+            {{ (card.localCurrency) && (card.localPrice / vm.exchRate  | currency:"USD$":0) || (card.dolPrice  | currency:"USD$":0)}}
+        </div>
+
+        <div class="subtitle secondary-text" ng-if="$root.localCurrency && card.rent">
+            {{ (card.localCurrency) && (card.localRentPrice  | currency:"&#8353;":0) || (card.dolRentPrice * vm.exchRate  | currency:"&#8353;":0)}}
+        </div>
+        <div class="subtitle secondary-text" ng-if="!$root.localCurrency && card.rent">
+            {{ (card.localCurrency) && (card.localRentPrice / vm.exchRate  | currency:"USD$":0) || (card.dolRentPrice  | currency:"USD$":0)}}
+        </div>
+
+        <div class="text pt-16" ng-if="card.countyName">
+            {{card.countyName}}
+        </div>
+        <div class="text pt-16" ng-if="card.stateName">
+            {{card.stateName}}
+        </div>        
+    </div>
+</div>

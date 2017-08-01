@@ -38,7 +38,7 @@
         msApiProvider.register('gallery.documents', ['app/data/gallery/documents.json']);
 
         // Navigation
-        msNavigationServiceProvider.saveItem('apps.gallery', {
+        msNavigationServiceProvider.saveItem('seller.gallery', {
             title : 'Gallery',
             icon  : 'icon-camera',
             state : 'app.gallery',

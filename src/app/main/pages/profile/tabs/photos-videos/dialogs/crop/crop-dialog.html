@@ -1,0 +1,31 @@
+<md-dialog class="crop-dialog" aria-label="New Message">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Cambiar el tamaño</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="assets/angular-material-assets/img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+
+    <md-dialog-content ms-scroll>
+
+           <!-- modo edicion de crop -->
+              <div ng-jcrop="obj.src" 
+                   selection="obj.coords" ></div>                   
+
+    </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+          <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+            More on Wikipedia
+          </md-button>
+          <span flex></span>
+          <md-button ng-click="crop()">
+            crop
+          </md-button>
+        </md-dialog-actions>    
+    
+</md-dialog>

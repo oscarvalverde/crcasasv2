@@ -29,11 +29,11 @@
         $translatePartialLoaderProvider.addPart('app/main/pages/auth/register-steps');
 
         // Navigation
-        msNavigationServiceProvider.saveItem('pages.auth.register-steps', {
-            title : 'Register Steps',
-            state : 'app.pages_auth_register-steps',
-            weight: 3
-        });
+        // msNavigationServiceProvider.saveItem('pages.auth.register-steps', {
+        //     title : 'Register Steps',
+        //     state : 'app.pages_auth_register-steps',
+        //     weight: 3
+        // });
     }
 
 })();

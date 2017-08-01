@@ -9,6 +9,8 @@
     /** @ngInject */
     function config($stateProvider, $translatePartialLoaderProvider, msNavigationServiceProvider)
     {
+
+        console.log('configuring register-v2');
         // State
         $stateProvider.state('app.pages_auth_register-v2', {
             url      : '/pages/auth/register-v2',
@@ -29,11 +31,11 @@
         $translatePartialLoaderProvider.addPart('app/main/pages/auth/register-v2');
 
         // Navigation
-        msNavigationServiceProvider.saveItem('pages.auth.register-v2', {
-            title : 'Register v2',
-            state : 'app.pages_auth_register-v2',
-            weight: 4
-        });
+        // .saveItem('pages.auth.register-v2', {
+        //     title : 'Register v2',
+        //     state : 'app.pages_auth_register-v2',
+        //     weight: 4
+        // });
     }
 
 })();

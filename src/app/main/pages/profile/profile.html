@@ -1,19 +1,21 @@
 <div id="profile" class="page-layout simple tabbed">
 
-    <!-- HEADER -->
+    <!-- HEADER 
+    https://www.toptal.com/designers/subtlepatterns/
+    -->
     <div class="header md-accent-bg" layout="column" layout-align="center center" layout-gt-sm="row" layout-align-gt-sm="space-between end">
         <div class="user-info" layout="column" layout-align="center center" layout-gt-sm="row" layout-align-gt-sm="start center">
-            <img class="profile-image avatar huge" src="{{ firebaseUser.photoURL }}">
+            <img class="profile-image avatar huge" src="{{ photoURL }}" err-src="/assets/images/avatars/profile.jpg">
 
-            <div class="name">{{ firebaseUser.displayName }}</div>
+            <div class="name">{{ displayName }}</div>
         </div>
 
         <div class="actions" layout="row" layout-align="end center">
             <md-button class="md-raised md-accent" aria-label="Follow" translate="PROFILE.FOLLOW"
-                       translate-attr-aria-label="PROFILE.FOLLOW">Follow
+                       translate-attr-aria-label="PROFILE.FOLLOW">Crear anuncio
             </md-button>
             <md-button class="md-raised md-primary" translate="PROFILE.SEND_MESSAGE"
-                       translate-attr-aria-label="PROFILE.SEND_MESSAGE">Send Message
+                       translate-attr-aria-label="PROFILE.SEND_MESSAGE">Favoritos
             </md-button>
         </div>
     </div>
@@ -28,7 +30,7 @@
                     <span translate="PROFILE.TIMELINE">Timeline</span>
                 </md-tab-label>
                 <md-tab-body>
-                    <md-content class="timeline-tab"
+                    <md-content class="about-tab"
                                 ng-include="'app/main/pages/profile/tabs/timeline/timeline.html'">
                     </md-content>
                 </md-tab-body>

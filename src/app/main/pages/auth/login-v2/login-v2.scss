@@ -1,7 +1,7 @@
 #login-v2 {
     height: 100%;
     overflow: hidden;
-    background: url('/assets/images/backgrounds/march.jpg') no-repeat;
+    background: url('/assets/images/backgrounds/january.jpg') no-repeat;
     background-size: cover;
 
     #login-v2-intro {
@@ -98,7 +98,13 @@
                 }                 
             }
 
-            .separator {
+            .error-message {
+                color: rgb(213,0,0);
+                text-align: left;
+                font-size: 12px;
+                line-height: 14px;                
+                }  
+            .separator2 {
                 font-size: 15px;
                 font-weight: 600;
                 margin: 24px auto 16px auto;
@@ -134,11 +140,34 @@
                 }
             }
 
+
+            .separator {
+                margin-top: 30px;
+                margin-bottom: 30px;
+                height: 0;
+                border-top: 1px solid #ddd;
+                border-bottom: 1px solid white;
+
+                .middle_separator {
+                    padding: 0 16px;
+                    color: #ccc;
+                    background: white;
+                    font-size: 14px;
+                    text-shadow: 0 1px 0 white;
+                    text-transform: uppercase;
+                    top: -7px;
+                    left: 50%;
+                }
+
+            }
+
+
             .md-button {
+                margin-bottom: 10px;
 
                 &.google,
                 &.facebook {
-                    width: 70%;
+                    width: 100%;
                     text-transform: none;
                     color: #FFFFFF;
                     font-size: 13px;

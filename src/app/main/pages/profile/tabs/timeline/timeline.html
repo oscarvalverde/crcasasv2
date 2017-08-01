@@ -1,54 +1,50 @@
 <div layout="row" layout-wrap>
 
-    <div class="timeline" layout="column" flex="100" flex-gt-sm="55" flex-gt-md="65" flex-order="2" flex-order-gt-sm="1">
+    <div class="about" layout="column" flex="100" flex-gt-sm="50" flex-gt-md="65">
+        <div class="profile-box info-box general md-whiteframe-1dp" layout="column">
+            <header class="md-accent-bg">
+                <div class="title" translate="PROFILE.GENERAL_INFORMATION">General Information</div>
+            </header>
 
+            <div class="content">
 
-                    <div class="product-detail-form-container md-background-bg md-whiteframe-1dp">
                         <form name="listForm">
                             <div layout-gt-sm="row"   layout-align="start center">
                                 <md-input-container class="md-block" flex-gt-sm>
-                                    <label translate="EC.CONTACT_FIRST_NAME">Nombre</label>
-                                    <input type="text" ng-model="vm.user.name">
+                                    <label translate="PROFILE.CONTACT_FIRST_NAME">Nombre</label>
+                                    <input type="text" ng-model="vm.firebaseUser.displayName" 
+                                           ng-readonly="true">
                                 </md-input-container>
 
                                 <md-input-container class="md-block" flex-gt-sm>
-                                    <label translate="EC.CONTACT_LAST_NAME">Apellido(s)</label>
-                                    <input type="text" ng-model="vm.user.lastName" >
-                                </md-input-container>
-                            </div>
-
-                            <div layout-gt-sm="row"  layout-align="start center">
-                                <md-input-container class="md-block" flex-gt-sm>
-                                    <label translate="EC.CONTACT_EMAIL">Correo</label>
-                                    <input type="text" ng-model="vm.user.email" >
-                                </md-input-container>
-
-                                <md-input-container class="md-block" flex-gt-sm>
-                                    <label translate="EC.CONTACT_PHONE">Teléfono</label>
-                                    <input  type="text" ng-model="vm.user.phone"
-                                            name="phone">                                          
-                                </md-input-container>
-
-                                <md-input-container class="md-block" flex-gt-sm>
-                                    <label translate="EC.CONTACT_MOBILE">Celular</label>
-                                    <input type="text" ng-model="vm.user.mobile">
+                                    <label translate="PROFILE.CONTACT_MOBILE">Celular</label>
+                                    <input type="text" ng-model="vm.user.mobile" >
                                 </md-input-container>
                             </div>
 
                             <div layout-gt-sm="row"  layout-align="start center">
                                 <md-input-container class="md-block" flex-gt-sm>
-                                    <label translate="EC.CONTACT_EMAIL">Correo</label>
+                                    <label translate="PROFILE.CONTACT_EMAIL">Correo</label>
+                                    <input type="text" ng-model="vm.firebaseUser.email" 
+                                    ng-readonly="true">
+                                </md-input-container>
+
+                            </div>
+
+                            <div layout-gt-sm="row"  layout-align="start center">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label translate="PROFILE.CONTACT_EMAIL">Correo</label>
                                     <input type="text" ng-model="vm.user.email" >
                                 </md-input-container>
 
                                 <md-input-container class="md-block" flex-gt-sm>
-                                    <label translate="EC.CONTACT_PHONE">Teléfono</label>
+                                    <label translate="PROFILE.CONTACT_PHONE">Teléfono</label>
                                     <input  type="text" ng-model="vm.user.phone"
                                             name="phone">                                          
                                 </md-input-container>
 
                                 <md-input-container class="md-block" flex-gt-sm>
-                                    <label translate="EC.CONTACT_COMPANY">Empresa</label>
+                                    <label translate="PROFILE.CONTACT_COMPANY">Empresa</label>
                                     <input type="text" ng-model="vm.user.company">
                                 </md-input-container>
                             </div>
@@ -56,13 +52,13 @@
                             <md-input-container class="md-block md-icon-float">
                               <md-checkbox ng-model="vm.user.otherContact" 
                                            aria-label="Checkbox 1">
-                                <span translate="EC.OTHER_CONTACT">Use other contact information?</span>
+                                <span translate="PROFILE.OTHER_CONTACT">Use other contact information?</span>
                               </md-checkbox>                              
                             </md-input-container>
 
                             <div layout-gt-sm="row" layout-align="start center">
                                 <md-input-container class="md-block" flex-gt-sm>
-                                    <label translate="EC.OTHER_NAME">Name</label>
+                                    <label translate="PROFILE.OTHER_NAME">Name</label>
                                     <input type="text" ng-model="vm.user.otherName"
                                            name="otherName"
                                            ng-required='vm.user.otherContact'>
@@ -72,7 +68,7 @@
                                 </md-input-container>
 
                                 <md-input-container class="md-block" flex-gt-sm>
-                                    <label translate="EC.OTHER_EMAIL">Email</label>
+                                    <label translate="PROFILE.OTHER_EMAIL">Email</label>
                                     <input type="email" name="otherEmail"
                                            ng-model="vm.user.otherEmail">
                                           <div ng-messages="listForm.otherEmail.$error">
@@ -81,46 +77,88 @@
                                 </md-input-container>
 
                                 <md-input-container class="md-block" flex-gt-sm>
-                                    <label translate="EC.OTHER_PHONE">Phone</label>
+                                    <label translate="PROFILE.CONTACT_PHONE">Phone</label>
                                     <input type="text" ng-model="vm.user.otherPhone"
                                             name="otherPhone">
                                 </md-input-container>
                             </div>
                             <div layout="row"  layout-align="center center">
-                                <md-button class="md-primary">Guardar</md-button>
+                                <md-button class="md-raised md-accent submit-button" 
+                                           ng-disabled="listForm.$invalid || listForm.$pristine"
+                                           ng-click="vm.saveUser(vm.user)">Guardar</md-button>                                
                             </div>
 
+                            <!-- IMAGE UPLOADER -->
+                            <div id="image-uploader"
+                                 flow-init="vm.ngFlowOptions"
+                                 flow-name="vm.ngFlow.flow"
+                                 flow-files-submitted="vm.upload()"
+                                 flow-file-success="vm.imageSuccess($file, $message)"
+                                 flow-complete="vm.uploadComplete()"
+                                 flow-file-added="!!{svg:1,png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]">
+                                <md-button flow-btn class="add-img-button md-icon-button"
+                                           aria-label="Add image" translate
+                                           translate-attr-aria-label="NOTES.ADD_IMAGE">
+                                    <md-icon md-font-icon="icon-file-image-box" class="s20"></md-icon>
+                                </md-button>
+                            </div>
+                            <!-- / IMAGE UPLOADER -->
+
                         </form>
-                    </div>
 
-
+            </div>
+        </div>
 
     </div>
 
-    <div class="timeline-sidebar" layout="column" flex="100" flex-gt-sm="45" flex-gt-md="35" flex-order="1" flex-order-gt-sm="2">
-
-        <div class="profile-box latest-activity md-whiteframe-1dp" layout="column">
+    <div class="about-sidebar" layout="column" flex="100" flex-gt-sm="50" flex-gt-md="35">
+        <div class="profile-box friends md-whiteframe-1dp" layout="column">
             <header class="md-accent-bg" layout="row" layout-align="space-between center">
-                <div class="title" translate="PROFILE.LATEST_ACTIVITY">Latest Activity</div>
-                <div class="more secondary-text" translate="PROFILE.SEE_ALL">See All</div>
+                <div class="title" translate="PROFILE.FRIENDS">Friends</div>
+                <div class="more secondary-text">
+                    <span translate="PROFILE.SEE">See</span>
+                    <span>454</span>
+                    <span translate="PROFILE.MORE">More</span>
+                </div>
+            </header>
+            <div class="content" layout="row" layout-wrap>
+                <div class="friend" flex="20" ng-repeat="friend in vm.about.friends">
+                    <img ng-src="{{friend.avatar}}">
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-box groups md-whiteframe-1dp" layout="column">
+            <header class="md-accent-bg" layout="row" layout-align="space-between center">
+                <div class="title" translate="PROFILE.JOINED_GROUPS">Joined Groups</div>
+                <div class="more secondary-text">
+                    <span translate="PROFILE.SEE">See</span>
+                    <span>6</span>
+                    <span translate="PROFILE.MORE">More</span>
+                </div>
             </header>
 
-            <div class="content" layout="row" layout-wrap>
-                <div class="activities">
-                    <div class="activity" layout="row" layout-align="start start" ng-repeat="activity in vm.activities">
-                        <img ng-src="{{activity.user.avatar}}" class="avatar" alt="{{activity.user.name}}"/>
+            <div class="content">
+                <div class="group" ng-repeat="group in vm.about.groups" layout="row"
+                     layout-align="space-between center">
+                    <div layout="row" layout-align="start center">
+                        <img ng-src="{{group.logo}}" class="logo" alt="{{group.name}}"/>
 
-                        <div layout="column">
-                            <div>
-                                <span class="username md-accent-color">{{activity.user.name}}</span>
-                                <span class="message"> {{activity.message}}</span>
-                            </div>
-                            <span class="time secondary-text">{{activity.time}}</span>
+                        <div>
+                            <div class="name">{{group.name}}</div>
+                            <div class="category">{{group.category}}</div>
+                            <div class="members">{{group.members}} people</div>
                         </div>
                     </div>
+                    <md-button class="md-icon-button" aria-label="more" translate
+                               translate-attr-aria-label="PROFILE.MORE">
+                        <md-icon md-font-icon="icon-dots-vertical"></md-icon>
+                    </md-button>
                 </div>
             </div>
         </div>
     </div>
+
+
 </div>
 

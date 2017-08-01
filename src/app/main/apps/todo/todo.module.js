@@ -45,7 +45,7 @@
         msApiProvider.register('todo.tags', ['app/data/todo/tags.json']);
 
         // Navigation
-        msNavigationServiceProvider.saveItem('apps.to-do', {
+        msNavigationServiceProvider.saveItem('seller.to-do', {
             title : 'To-Do',
             icon  : 'icon-checkbox-marked',
             state : 'app.to-do',

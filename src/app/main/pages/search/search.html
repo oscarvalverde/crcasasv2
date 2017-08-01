@@ -5,8 +5,9 @@
         <div class="search" flex layout="row" layout-align="start center">
             <md-icon md-font-icon="icon-magnify" class="icon search-icon"></md-icon>
 
-            <input class="search-input" ng-model="vm.search" type="text" placeholder="Search.." translate
-                   translate-attr-placeholder="SEARCH.SEARCH" flex>
+            <input class="search-input" ng-model="vm.query" type="text" placeholder="Search.." 
+                ng-keyup="vm.search()"
+                translate translate-attr-placeholder="SEARCH.SEARCH" flex>
         </div>
 
         <md-menu class="search-settings" md-position-mode="target-right target">
@@ -36,8 +37,17 @@
 
         <md-tabs md-dynamic-height>
             <md-tab label="Classic">
-                <md-content class="classic-tab"
-                            ng-include="'app/main/pages/search/tabs/classic/classic.html'">
+                <md-content class="classic-tab" >
+                    <div layout="row" ng-repeat="hit in vm.hits" ng-switch on="$index % 3">
+                        <ms-card ng-switch-when="0" template="'app/templates/ms-card/search/template-1.html'" ng-model="vm.hits[$index]"
+                        view-model="vm"></ms-card>
+                        <ms-card ng-switch-when="0" ng-show="vm.hits[$index+1]"
+                         template="'app/templates/ms-card/search/template-1.html'" ng-model="vm.hits[$index+1]"
+                        view-model="vm"></ms-card>
+                        <ms-card ng-switch-when="0" ng-show="vm.hits[$index+2]"
+                            template="'app/templates/ms-card/search/template-1.html'" ng-model="vm.hits[$index+2]"
+                        view-model="vm"></ms-card>                                                
+                    </div>
                 </md-content>
             </md-tab>
             <md-tab label="Emails">

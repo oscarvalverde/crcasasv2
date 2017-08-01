@@ -38,11 +38,11 @@
         msApiProvider.register('listing.user', ['app/data/listing/user.json']);
 
         // Navigation
-        msNavigationServiceProvider.saveItem('apps.listing', {
+        msNavigationServiceProvider.saveItem('seller.listing', {
             title : 'Listing',
             icon  : 'icon-store',
             state : 'app.listing',
-            weight: 10
+            weight: 3
         });
 
     }

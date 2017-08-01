@@ -30,14 +30,16 @@
         your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <body md-theme="{{vm.themes.active.name}}" md-theme-watch ng-controller="IndexController as vm"
+    <body md-theme="{{vm.themes.active.name}}" 
+          md-theme-watch 
+          ng-controller="IndexController as vm"
           class="{{state.current.bodyClass || ''}}">
 
         <!-- SPLASH SCREEN -->
         <ms-splash-screen id="splash-screen">
             <div class="center">
                 <div class="logo">
-                    <span><img src="assets/images/logos/crcasas-trans.png" height="75%" width="75%" align="middle" style="margin:10px "></span>
+                    <span><img src="assets/images/logos/logocr.png" height="75%" width="75%" align="middle" style="margin:10px "></span>
                 </div>
                 <!-- Material Design Spinner -->
                 <div class="spinner-wrapper">
@@ -60,7 +62,8 @@
 
         <div id="main" class="animate-slide-up" ui-view="main" layout="column"></div>
  
-        <ms-theme-options></ms-theme-options>
+        <my-theme-options></my-theme-options>
+
 
 
         <!-- build:js(src) scripts/vendor.js -->
@@ -90,6 +93,12 @@
           };
           firebase.initializeApp(config);
         </script>
+
+<!--
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.4.0/croppie.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.4.0/croppie.min.js"></script>
+-->
+
 
     </body>
 </html>

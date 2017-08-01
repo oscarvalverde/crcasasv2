@@ -5,7 +5,6 @@
     angular
         .module('app.core')
         .factory('myUtils', myUtils)
-        .factory('authService', authService)
         .factory('Auth', Auth);
 
 
@@ -100,51 +99,12 @@
 
     }
 
-    /** @ngInject */
-   function authService($firebaseAuth, firebaseDataService, partyService) {
-    var firebaseAuthObject = $firebaseAuth();
 
-    var service = {
-      firebaseAuthObject: firebaseAuthObject,
-      register: register,
-      login: login,
-      logout: logout,
-      isLoggedIn: isLoggedIn,
-      sendWelcomeEmail: sendWelcomeEmail
-    };
-
-    return service;
-
-    ////////////
-
-    function register(user) {
-      return firebaseAuthObject.$createUserWithEmailAndPassword(user.email, user.password);
-    }
-
-    function login(user) {
-      return firebaseAuthObject.$signInWithEmailAndPassword(user.email, user.password);
-    }
-
-    function logout() {
-      partyService.reset();
-      firebaseAuthObject.$signOut();
-    }
-
-    function isLoggedIn() {
-      return firebaseAuthObject.$getAuth();
-    }
-
-    function sendWelcomeEmail(emailAddress) {
-      firebaseDataService.emails.push({
-        emailAddress: emailAddress
-      });
-    }
-
-   }
 
 
     /** @ngInject */
     function Auth($firebaseAuth) {
+        console.log('think this is not used');
         return $firebaseAuth();
     }
 

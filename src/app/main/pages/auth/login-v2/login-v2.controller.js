@@ -3,37 +3,42 @@
     'use strict';
 
     angular
-        .module('app.pages.auth.login')
+        .module('app.pages.auth.login-v2')
         .controller('LoginV2Controller', LoginV2Controller);
 
 
     /** @ngInject */
-    function LoginV2Controller($location, $scope, $firebaseAuth, $firebaseObject, $state, firebaseUrl)
+    function LoginV2Controller(GApi, $http, $location, 
+                              $scope, $firebaseAuth, $firebaseObject, 
+                              $stateParams,
+                              $timeout,
+                              $state, firebaseUrl)
     {
 
-
+ 
     var vm = this;
  
     var auth = $firebaseAuth();       
 
     var ref = firebase.database().ref();
 
-     var obj = $firebaseObject(ref);
+    //var obj = $firebaseObject(ref);
 
     vm.login = login;
 
     vm.isLoggedIn  = false;
 
-
     vm.loginWithFacebook = loginWithFacebook;
     vm.loginWithGoogle = loginWithGoogle;
+
+    vm.anotherProvider = false;
 
     vm.authError = { wrongPassword: false
                    };
 
 
     //initialize and get current authenticated state:
-    init();
+    //init();
 
     function init(){
         auth.$onAuthStateChanged(authDataCallback);
@@ -43,6 +48,7 @@
         }
         
     };
+
 
     function authDataCallback(authData) {
         if (authData) {
@@ -73,6 +79,33 @@
                 $state.go("app.pages_profile");
             });
 
+
+            console.log("going to get token...");
+
+            firebase.auth().currentUser.getToken(true).then(function(idToken) {
+              // Send token to your backend via HTTPS
+              // ...
+              console.log("get token success 3");
+
+              //GApi.execute('people', 'insertPeople', {
+              //                       'token': idToken,
+              //                       'people': {'fireBaseEmail': 'ovalverde@gmail.com'}}).then(function(resp) {
+              //    console.log(resp);
+              //    console.log('people success :)');
+
+
+                  // 
+              //}, function() {
+              //    console.log('people error:(');
+              //});              
+
+            }).catch(function(error) {
+              console.log("token error :(");
+              console.log(error);
+            });
+
+
+
         } else {
             console.log("User is logged out");
             vm.isLoggedIn = false;
@@ -84,8 +117,13 @@
       auth.$signInWithEmailAndPassword(email, password)
         .then(function() {
             console.log("Sign in success!");
-            vm.authError.wrongPassword = false;            
-        })
+            vm.authError.wrongPassword = false; 
+
+            var goTo = $stateParams.toState || "app.pages_profile";
+            console.log(goTo);
+            $state.go(goTo);
+
+         })
         .catch(function(error) {
               console.error("Error: ", error.code);
               switch(error.code) {
@@ -100,13 +138,30 @@
         });
     }    
 
+
     function loginWithFacebook() {
           // login with Facebook
           auth.$signInWithPopup("facebook").then(function(firebaseUser) {
             console.log("Signed in as:", firebaseUser.user.email);
+            var goTo = $stateParams.toState || "app.pages_profile";
+            console.log(goTo);
+            $state.go(goTo);
+
+
           }).catch(function(error) {
-            alert(error.code);
             console.log("Authentication failed:", error);
+            switch(error.code) {                
+                case "auth/account-exists-with-different-credential":                    
+                    vm.anotherProvider = true; 
+                    $timeout(function(){vm.anotherProvider = false;}, 10000); 
+                    break;
+                default:
+                    vm.anotherProvider = true; 
+                    $timeout(function(){vm.anotherProvider = false;}, 10000); 
+                    break;
+            }
+
+
           });
     }   
 
@@ -114,12 +169,24 @@
           // login with Facebook
           auth.$signInWithPopup("google").then(function(firebaseUser) {
             console.log("Signed in as:", firebaseUser.user.email);
+            var goTo = $stateParams.toState || "app.pages_profile";
+            console.log(goTo);
+            $state.go(goTo);
+
           }).catch(function(error) {
-            alert(error.code);
             console.log("Authentication failed:", error);
+            switch(error.code) {                
+                case "auth/account-exists-with-different-credential":                    
+                    vm.anotherProvider = true; 
+                    $timeout(function(){vm.anotherProvider = false;}, 4000); 
+                    break;
+                default:
+                    vm.anotherProvider = true; 
+                    $timeout(function(){vm.anotherProvider = false;}, 4000); 
+                    break;
+            }            
           });
     } 
-
 
 
 

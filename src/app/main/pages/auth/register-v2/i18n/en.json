@@ -2,8 +2,8 @@
     "REGISTER_V2": {
         "INTRO_TITLE": "Welcome to crCasas!",
         "INTRO_DESCRIPTION": "¿Quiere comprar o alquilar una propiedad? ¿O quiere venderla? Cree su cuenta en crCasas para guardar sus propiedades favoritas, para anunciar, y para muchas otras cosas más.",
-        "TITLE": "Create an account",
-        "DESCRIPTION": "Puede crear una nueva cuenta con su correo electrónico o simplemente registrarse con su cuenta de Facebook o Google",
+        "TITLE": "Sign up in seconds",
+        "DESCRIPTION": "Sign up using your email account and a password",
         "NAME": "Name",
         "EMAIL": "Email",
         "PASSWORD": "Password",

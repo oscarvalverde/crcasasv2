@@ -7,7 +7,7 @@
         .controller('ForgotPasswordController', ForgotPasswordController);
 
     /** @ngInject */
-    function ForgotPasswordController($firebaseAuth, $window, GApi)
+    function ForgotPasswordController($firebaseAuth, $window)
     {
 
     var vm = this;
@@ -31,18 +31,18 @@
         //      console.log('error :(');
         //  });
 
-      var resource = {
-        message: "Appointment 4444"
-      };
+//        var resource = {
+//          message: "Appointment 4444"
+//        };
 
-        $window.gapi.client.request({
-          'path': 'https://crcasaslogin.appspot.com/_ah/api/echo/v4/private',
-          'method': 'GET',
-           'params': resource
-        }).then(function(resp, rawResp) {
-            console.log(resp);
-            console.log(rawResp);            
-        });         
+//          $window.gapi.client.request({
+//            'path': 'https://crcasaslogin.appspot.com/_ah/api/echo/v4/private',
+//            'method': 'GET',
+//             'params': resource
+//          }).then(function(resp, rawResp) {
+//              console.log(resp);
+//              console.log(rawResp);            
+//          });         
 
 // http://stackoverflow.com/questions/18260815/use-gapi-client-javascript-to-execute-my-custom-google-api
 // http://stackoverflow.com/questions/19804951/google-cloud-endpoints-making-calls-with-js-client-passing-params-and-json-bo

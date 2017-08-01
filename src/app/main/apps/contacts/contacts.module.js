@@ -34,10 +34,12 @@
                 },
                 // controller will not be loaded until $requireSignIn resolves
                 // Auth refers to our $firebaseAuth wrapper in the factory below
-                "currentAuth": ["Auth", function(Auth) {
+                "currentAuth": ["authService", function(authService) {
                   // $requireSignIn returns a promise so the resolve waits for it to complete
                   // If the promise is rejected, it will throw a $stateChangeError (see above)
-                  return Auth.$requireSignIn();
+                  console.log("require signin");
+                  //return Auth.$requireSignIn();
+                  return authService.firebaseAuthObject.$requireSignIn();                  
                 }]                
             }
         });
@@ -50,7 +52,7 @@
         msApiProvider.register('contacts.user', ['app/data/contacts/user.json']);
 
         // Navigation
-        msNavigationServiceProvider.saveItem('apps.contacts', {
+        msNavigationServiceProvider.saveItem('seller.contacts', {
             title : 'Contacts',
             icon  : 'icon-account-box',
             state : 'app.contacts',

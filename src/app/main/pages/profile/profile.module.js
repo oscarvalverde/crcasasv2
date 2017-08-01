@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('app.pages.profile', [])
+        .module('app.pages.profile', ['flow'])
         .config(config);
 
     /** @ngInject */
@@ -29,7 +29,16 @@
                 PhotosVideos: function (msApi)
                 {
                     return msApi.resolve('profile.photosVideos@get');
-                }
+                },
+                // controller will not be loaded until $requireSignIn resolves
+                // Auth refers to our $firebaseAuth wrapper in the factory below
+                "currentAuth": ["authService", function(authService) {
+                  // $requireSignIn returns a promise so the resolve waits for it to complete
+                  // If the promise is rejected, it will throw a $stateChangeError (see above)
+                  console.log("require signin");
+                  //return Auth.$requireSignIn();
+                  return authService.firebaseAuthObject.$requireSignIn();                  
+                }]                 
             },
             bodyClass: 'profile'
         });
@@ -43,11 +52,11 @@
         msApiProvider.register('profile.photosVideos', ['app/data/profile/photos-videos.json']);
 
         // Navigation
-        msNavigationServiceProvider.saveItem('pages.profile', {
+        msNavigationServiceProvider.saveItem('seller.profile', {
             title : 'Profile',
             icon  : 'icon-account',
             state : 'app.pages_profile',
-            weight: 6
+            weight: 2
         });
     }
 

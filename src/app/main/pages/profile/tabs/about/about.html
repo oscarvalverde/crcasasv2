@@ -8,154 +8,122 @@
 
             <div class="content">
 
-                        <form name="listForm">
-                            <div layout-gt-sm="row"   layout-align="start center">
-                                <md-input-container class="md-block" flex-gt-sm>
-                                    <label translate="EC.CONTACT_FIRST_NAME">Nombre</label>
-                                    <input type="text" ng-model="vm.user.name">
-                                </md-input-container>
+                <form name="listForm">
+                    <div layout-gt-sm="row"   layout-align="start center">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label translate="PROFILE.CONTACT_FIRST_NAME">Nombre</label>
+                            <input type="text" ng-model="vm.firebaseUser.displayName" 
+                                   ng-readonly="true">
+                        </md-input-container>
 
-                                <md-input-container class="md-block" flex-gt-sm>
-                                    <label translate="EC.CONTACT_LAST_NAME">Apellido(s)</label>
-                                    <input type="text" ng-model="vm.user.lastName" >
-                                </md-input-container>
-                            </div>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label translate="PROFILE.CONTACT_MOBILE">Celular</label>
+                            <input type="text" ng-model="vm.user.mobile" >
+                        </md-input-container>
+                    </div>
 
-                            <div layout-gt-sm="row"  layout-align="start center">
-                                <md-input-container class="md-block" flex-gt-sm>
-                                    <label translate="EC.CONTACT_EMAIL">Correo</label>
-                                    <input type="text" ng-model="vm.user.email" >
-                                </md-input-container>
+                    <div layout-gt-sm="row"  layout-align="start center">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label translate="PROFILE.CONTACT_EMAIL">Correo</label>
+                            <input type="text" ng-model="vm.firebaseUser.email" 
+                            ng-readonly="true">
+                        </md-input-container>
 
-                                <md-input-container class="md-block" flex-gt-sm>
-                                    <label translate="EC.CONTACT_PHONE">Teléfono</label>
-                                    <input  type="text" ng-model="vm.user.phone"
-                                            name="phone">                                          
-                                </md-input-container>
+                    </div>
 
-                                <md-input-container class="md-block" flex-gt-sm>
-                                    <label translate="EC.CONTACT_MOBILE">Celular</label>
-                                    <input type="text" ng-model="vm.user.mobile">
-                                </md-input-container>
-                            </div>
+                    <div layout-gt-sm="row"  layout-align="start center">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label translate="PROFILE.CONTACT_EMAIL">Correo</label>
+                            <input type="text" ng-model="vm.user.email" >
+                        </md-input-container>
 
-                            <div layout-gt-sm="row"  layout-align="start center">
-                                <md-input-container class="md-block" flex-gt-sm>
-                                    <label translate="EC.CONTACT_EMAIL">Correo</label>
-                                    <input type="text" ng-model="vm.user.email" >
-                                </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label translate="PROFILE.CONTACT_PHONE">Teléfono</label>
+                            <input  type="text" ng-model="vm.user.phone"
+                                    name="phone">                                          
+                        </md-input-container>
 
-                                <md-input-container class="md-block" flex-gt-sm>
-                                    <label translate="EC.CONTACT_PHONE">Teléfono</label>
-                                    <input  type="text" ng-model="vm.user.phone"
-                                            name="phone">                                          
-                                </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label translate="PROFILE.CONTACT_COMPANY">Empresa</label>
+                            <input type="text" ng-model="vm.user.company">
+                        </md-input-container>
+                    </div>
 
-                                <md-input-container class="md-block" flex-gt-sm>
-                                    <label translate="EC.CONTACT_COMPANY">Empresa</label>
-                                    <input type="text" ng-model="vm.user.company">
-                                </md-input-container>
-                            </div>
+                    <md-input-container class="md-block md-icon-float">
+                      <md-checkbox ng-model="vm.user.otherContact" 
+                                   aria-label="Checkbox 1">
+                        <span translate="PROFILE.OTHER_CONTACT">Use other contact information?</span>
+                      </md-checkbox>                              
+                    </md-input-container>
 
-                            <md-input-container class="md-block md-icon-float">
-                              <md-checkbox ng-model="vm.user.otherContact" 
-                                           aria-label="Checkbox 1">
-                                <span translate="EC.OTHER_CONTACT">Use other contact information?</span>
-                              </md-checkbox>                              
-                            </md-input-container>
+                    <div layout-gt-sm="row" layout-align="start center">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label translate="PROFILE.OTHER_NAME">Name</label>
+                            <input type="text" ng-model="vm.user.otherName"
+                                   name="otherName"
+                                   ng-required='vm.user.otherContact'>
+                              <div ng-messages="listForm.otherName.$error">
+                                <div ng-message="required">El nombre es requerido.</div>
+                              </div>                                           
+                        </md-input-container>
 
-                            <div layout-gt-sm="row" layout-align="start center">
-                                <md-input-container class="md-block" flex-gt-sm>
-                                    <label translate="EC.OTHER_NAME">Name</label>
-                                    <input type="text" ng-model="vm.user.otherName"
-                                           name="otherName"
-                                           ng-required='vm.user.otherContact'>
-                                      <div ng-messages="listForm.otherName.$error">
-                                        <div ng-message="required">El nombre es requerido.</div>
-                                      </div>                                           
-                                </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label translate="PROFILE.OTHER_EMAIL">Email</label>
+                            <input type="email" name="otherEmail"
+                                   ng-model="vm.user.otherEmail">
+                                  <div ng-messages="listForm.otherEmail.$error">
+                                        <div ng-message="email">Digite una dirección de correo válida.</div>
+                                  </div>                                    
+                        </md-input-container>
 
-                                <md-input-container class="md-block" flex-gt-sm>
-                                    <label translate="EC.OTHER_EMAIL">Email</label>
-                                    <input type="email" name="otherEmail"
-                                           ng-model="vm.user.otherEmail">
-                                          <div ng-messages="listForm.otherEmail.$error">
-                                                <div ng-message="email">Digite una dirección de correo válida.</div>
-                                          </div>                                    
-                                </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label translate="PROFILE.CONTACT_PHONE">Phone</label>
+                            <input type="text" ng-model="vm.user.otherPhone"
+                                    name="otherPhone">
+                        </md-input-container>
+                    </div>
+                    <div layout="row"  layout-align="center center">
+                        <md-button class="md-raised md-accent submit-button" 
+                                   ng-disabled="listForm.$invalid || listForm.$pristine"
+                                   ng-click="vm.saveUser(vm.user)">Guardar</md-button>                                
+                    </div>
 
-                                <md-input-container class="md-block" flex-gt-sm>
-                                    <label translate="EC.OTHER_PHONE">Phone</label>
-                                    <input type="text" ng-model="vm.user.otherPhone"
-                                            name="otherPhone">
-                                </md-input-container>
-                            </div>
-                            <div layout="row"  layout-align="center center">
-                                <md-button class="md-primary">Guardar</md-button>
-                            </div>
+                </form>
 
-                        </form>
+            <form ng-submit="upload_image(image)">
+                <div class="fb-error" ng-show="error">{{error}}</div>
+                <div class="fb-inputs" ng-hide="image.isUploading">
+                    <input class="fb-image-upload" fb-image-upload class="fb-input" type="file" name="image"/>
+                    <input class="fb-submit" type="submit" value="Upload Image" ng-show="image.valid"/>
+                </div>
+                <div class="fb-uploading" ng-show="image.isUploading">
+                    Uploading...
+                </div>
+            </form>   
+
+
+    
+            <div class="image-upload">
+                <label for="file-input">
+                    <img src="placeholder.jpg"/>
+                </label>
+
+                <input id="file-input" type="file"/>
+            </div>                               
+
+            <div><span>imagen:</span><img ng-src="{{vm.thisimage}}" /></div>
+            <div layout="row"  layout-align="center center">
+                <md-button class="md-raised md-accent submit-button" 
+                           ng-click="vm.watermark()">Watermark</md-button>                                
+            </div>
+            <div id='imagen'> </div>
 
             </div>
+            <div id='imagen2'> </div>
+
+            </div>            
         </div>
 
-        <div class="profile-box info-box work md-whiteframe-1dp" layout="column">
-            <header class="md-accent-bg">
-                <div class="title" translate="PROFILE.WORK">Work</div>
-            </header>
-
-            <div class="content">
-                <div class="info-line">
-                    <div class="title" translate="PROFILE.OCCUPATION">Occupation</div>
-                    <div class="info">{{vm.about.work.occupation}}</div>
-                </div>
-
-                <div class="info-line">
-                    <div class="title" translate="PROFILE.SKILLS">Skills</div>
-                    <div class="info">{{vm.about.work.skills}}</div>
-                </div>
-
-                <div class="info-line">
-                    <div class="title" translate="PROFILE.JOBS">Jobs</div>
-                    <table class="info jobs">
-                        <tr class="job" ng-repeat="job in vm.about.work.jobs">
-                            <td class="company">{{job.company}}</td>
-                            <td class="date">{{job.date}}</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div class="profile-box info-box contact md-whiteframe-1dp" layout="column">
-            <header class="md-accent-bg">
-                <div class="title" translate="PROFILE.CONTACT">Contact</div>
-            </header>
-            <div class="content">
-                <div class="info-line">
-                    <div class="title" translate="PROFILE.ADDRESS">Address</div>
-                    <div class="info">{{vm.about.contact.address}}</div>
-                </div>
-                <div class="info-line">
-                    <div class="title" translate="PROFILE.TEL">Tel.</div>
-                    <div class="info" ng-repeat="tel in vm.about.contact.tel">
-                        <span>{{tel}}</span>
-                    </div>
-                </div>
-                <div class="info-line">
-                    <div class="title" translate="PROFILE.WEBSITE">Website</div>
-                    <div class="info" ng-repeat="website in vm.about.contact.websites">
-                        <span>{{website}}</span>
-                    </div>
-                </div>
-                <div class="info-line">
-                    <div class="title" translate="PROFILE.EMAILS">Emails</div>
-                    <div class="info" ng-repeat="email in vm.about.contact.emails">
-                        <span>{{email}}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <div class="about-sidebar" layout="column" flex="100" flex-gt-sm="50" flex-gt-md="35">
@@ -205,5 +173,6 @@
             </div>
         </div>
     </div>
+
 
 </div>
